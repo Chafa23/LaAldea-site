@@ -1,0 +1,18 @@
+User-agent: Googlebot
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /temp/
+Disallow: /private/
+Disallow: /assets/js/
+Disallow: /assets/css/
+
+User-agent: *
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /temp/
+Disallow: /private/
+Disallow: /assets/js/
+Disallow: /assets/css/
+Crawl-delay: 10
+
+Sitemap: https://www.laaldeatala.com.uy/sitemap.xml
