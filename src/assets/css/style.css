@@ -678,42 +678,57 @@ section:nth-child(even) {
 /* Responsive design */
 @media (max-width: 768px) {
     #hero {
-        height: calc(100 * var(--vh, 1vh));
-        min-height: 600px;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-        will-change: transform;
+        height: 110vh; /* Changed from 70vh to 100vh */
+        min-height: 
     }
 
+    .navbar-brand img {
+        height: 30px;
+    }
+    
     .hero-section {
-        height: calc(100 * var(--vh, 1vh));
-        min-height: 600px;
-        background-attachment: scroll;
-        margin-top: -56px;
-        position: relative;
-        will-change: transform;
-        -webkit-backface-visibility: hidden;
+        height: 110vh;
+        min-height: 
+        background-attachment: scroll; /* Better mobile performance */
+        margin-top: -56px; /* Mobile navbar height */
     }
 
+    .hero-title {
+        font-size: 2.5rem; /* Smaller title on mobile */
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    /* Ensure content is centered */
     .hero-section .container {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        position: relative;
         z-index: 1;
     }
-}
 
+    /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
     .hero-section {
-        position: fixed;
-        height: calc(100 * var(--vh, 1vh));
-        min-height: 600px;
-        -webkit-overflow-scrolling: touch;
+        background-attachment: scroll;
+        min-height: 
+    }
+    
+    body {
+        width: 100vw;
+        position: relative;
+    }
+
+    /* Fix for notched iPhones */
+    @media screen and (orientation: landscape) {
+        .hero-section {
+            height: 100vh;
+            height: 
+        }
     }
 }
 
