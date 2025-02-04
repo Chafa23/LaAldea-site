@@ -678,27 +678,32 @@ section:nth-child(even) {
 /* Responsive design */
 @media (max-width: 768px) {
     #hero {
-        height: 110vh; /* Changed from 70vh to 100vh */
+        height: 100vh;
+        min-height: 600px;
+        position: relative;
+        overflow: hidden;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
 
-    .navbar-brand img {
-        height: 30px;
-    }
-    
     .hero-section {
-        height: 110vh;
-        margin-top: -56px; /* Mobile navbar height */
+        height: 100vh;
+        min-height: 600px;
+        background-attachment: scroll;
+        margin-top: -56px;
+        position: relative;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
     }
 
     .hero-title {
-        font-size: 2.5rem; /* Smaller title on mobile */
+        font-size: 2.5rem;
     }
 
     .hero-subtitle {
         font-size: 1.2rem;
     }
 
-    /* Ensure content is centered */
     .hero-section .container {
         display: flex;
         align-items: center;
@@ -707,21 +712,14 @@ section:nth-child(even) {
         position: relative;
         z-index: 1;
     }
+}
 
-    /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
-    
-    
-    body {
-        width: 100vw;
-        position: relative;
-    }
-
-    /* Fix for notched iPhones */
-    @media screen and (orientation: landscape) {
-        .hero-section {
-            height: 100vh;
-        }
+    .hero-section {
+        background-attachment: scroll;
+        height: 100vh;
+        min-height: 600px;
+        -webkit-transform: translateZ(0);
     }
 }
 
