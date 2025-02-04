@@ -713,7 +713,6 @@ section:nth-child(even) {
 @supports (-webkit-touch-callout: none) {
     .hero-section {
         background-attachment: scroll;
-        min-height: -webkit-fill-available;
     }
     
     body {
