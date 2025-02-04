@@ -687,7 +687,6 @@ section:nth-child(even) {
     
     .hero-section {
         height: 110vh;
-        background-attachment: scroll; /* Better mobile performance */
         margin-top: -56px; /* Mobile navbar height */
     }
 
@@ -711,9 +710,7 @@ section:nth-child(even) {
 
     /* iOS specific fixes */
 @supports (-webkit-touch-callout: none) {
-    .hero-section {
-        background-attachment: scroll;
-    }
+    
     
     body {
         width: 100vw;
@@ -724,7 +721,6 @@ section:nth-child(even) {
     @media screen and (orientation: landscape) {
         .hero-section {
             height: 100vh;
-            height: -webkit-fill-available;
         }
     }
 }
