@@ -58,10 +58,6 @@
         }
 
         .hero-section {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
             height: 100vh;
             background-image: url('assets/images/laaldeaedificio.webp');
             background-size: cover;
@@ -94,9 +90,15 @@
             transition: opacity 0.5s ease;
         }
 
+        @media (min-width: 769px) {
+            .hero-section {
+                background-attachment: fixed;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero-section {
-                height: calc(var(--vh, 1vh) * 100);
+                height: auto;
                 background-attachment: scroll;
             }
         }
