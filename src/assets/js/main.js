@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(setRealVh, 100);
     });
 
-    window.addEventListener('orientationchange', setVH);
+    window.addEventListener('orientationchange', setRealVh);
 
     // Handle Chrome mobile scroll events
     let lastHeight = window.innerHeight;
