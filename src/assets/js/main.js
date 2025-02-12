@@ -163,48 +163,34 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Replace viewport height calculation
-    function setInitialHeight() {
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            // Set initial height
-            heroSection.style.height = `${window.innerHeight}px`;
-        }
-    }
-
-    // Set initial height
-    setInitialHeight();
-
-    // Only update on orientation change
-    window.addEventListener('orientationchange', () => {
-        setTimeout(setInitialHeight, 100);
-    });
-
-    function setHeroHeight() {
+    // Add this consolidated height handler
+    function handleHeroHeight() {
         const heroSection = document.querySelector('.hero-section');
         if (!heroSection) return;
 
-        // Only set JS height on mobile
         if (window.innerWidth <= 768) {
-            heroSection.style.height = `${window.innerHeight}px`;
+            // Lock the height on mobile to prevent address bar issues
+            const height = window.innerHeight;
+            heroSection.style.height = `${height}px`;
         } else {
-            heroSection.style.height = '100vh'; // Reset to CSS value on desktop
+            // Use CSS 100vh on desktop
+            heroSection.style.height = '';  // Remove inline style to let CSS take over
         }
     }
 
-    // Initial height set
-    setHeroHeight();
+    // Initial setup
+    handleHeroHeight();
 
-    // Update on orientation change (mobile)
+    // Handle orientation changes
     window.addEventListener('orientationchange', () => {
-        setTimeout(setHeroHeight, 100);
+        setTimeout(handleHeroHeight, 100);
     });
 
-    // Handle window resize for responsive switches
+    // Handle resize with debounce (only for desktop/mobile switches)
     let resizeTimer;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(setHeroHeight, 250);
+        resizeTimer = setTimeout(handleHeroHeight, 250);
     });
 
 });
