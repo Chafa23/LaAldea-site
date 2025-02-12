@@ -119,14 +119,6 @@ body {
     }
 }
 
-@supports (-webkit-touch-callout: none) {
-    .hero-section {
-        background-attachment: scroll;
-        height: -webkit-fill-available;
-        height: 100dvh;
-    }
-}
-
 /* Buttons */
 .btn {
     transition: var(--transition);
