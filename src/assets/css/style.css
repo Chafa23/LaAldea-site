@@ -686,6 +686,7 @@ section:nth-child(even) {
 }
 
 /* Responsive design */
+/* Responsive design */
 @media (max-width: 768px) {
     #hero {
         height: 110vh; /* Changed from 70vh to 100vh */
