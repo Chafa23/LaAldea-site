@@ -169,12 +169,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (!heroSection) return;
 
         if (window.innerWidth <= 768) {
-            // Lock the height on mobile to prevent address bar issues
-            const height = window.innerHeight;
-            heroSection.style.height = `${height}px`;
+            // Mobile: Use innerHeight to avoid address bar issues
+            heroSection.style.height = `${window.innerHeight}px`;
         } else {
-            // Use CSS 100vh on desktop
-            heroSection.style.height = '';  // Remove inline style to let CSS take over
+            // Desktop: Use vh units for full viewport height
+            heroSection.style.height = '100vh';
         }
     }
 
