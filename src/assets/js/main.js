@@ -163,32 +163,50 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Calculate real viewport height for mobile Chrome
-    function setRealVhOnWidthChange() {
-        let lastWidth = window.innerWidth;
-        let lastOrientation = window.orientation || 0;
-
-        function updateVh() {
-            const currentWidth = window.innerWidth;
-            const currentOrientation = window.orientation || 0;
-
-            if (currentWidth !== lastWidth || currentOrientation !== lastOrientation) {
-                const vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--real-vh', `${vh}px`);
-                lastWidth = currentWidth;
-                lastOrientation = currentOrientation;
-            }
+    // Replace viewport height calculation
+    function setInitialHeight() {
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            // Set initial height
+            heroSection.style.height = `${window.innerHeight}px`;
         }
-
-        // Initial set
-        updateVh();
-
-        // Listen for width or orientation changes
-        window.addEventListener('resize', () => setTimeout(updateVh, 100));
-        window.addEventListener('orientationchange', updateVh);
     }
 
-    setRealVhOnWidthChange();
+    // Set initial height
+    setInitialHeight();
+
+    // Only update on orientation change
+    window.addEventListener('orientationchange', () => {
+        setTimeout(setInitialHeight, 100);
+    });
+
+    function setHeroHeight() {
+        const heroSection = document.querySelector('.hero-section');
+        if (!heroSection) return;
+
+        // Only set JS height on mobile
+        if (window.innerWidth <= 768) {
+            heroSection.style.height = `${window.innerHeight}px`;
+        } else {
+            heroSection.style.height = '100vh'; // Reset to CSS value on desktop
+        }
+    }
+
+    // Initial height set
+    setHeroHeight();
+
+    // Update on orientation change (mobile)
+    window.addEventListener('orientationchange', () => {
+        setTimeout(setHeroHeight, 100);
+    });
+
+    // Handle window resize for responsive switches
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(setHeroHeight, 250);
+    });
+
 });
 
 function openContactForm(product) {
