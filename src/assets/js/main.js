@@ -164,31 +164,31 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Calculate real viewport height for mobile Chrome
-    function setRealVh() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--real-vh', `${vh}px`);
+    function setRealVhOnWidthChange() {
+        let lastWidth = window.innerWidth;
+        let lastOrientation = window.orientation || 0;
+
+        function updateVh() {
+            const currentWidth = window.innerWidth;
+            const currentOrientation = window.orientation || 0;
+
+            if (currentWidth !== lastWidth || currentOrientation !== lastOrientation) {
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--real-vh', `${vh}px`);
+                lastWidth = currentWidth;
+                lastOrientation = currentOrientation;
+            }
+        }
+
+        // Initial set
+        updateVh();
+
+        // Listen for width or orientation changes
+        window.addEventListener('resize', () => setTimeout(updateVh, 100));
+        window.addEventListener('orientationchange', updateVh);
     }
 
-    // Initial calculation
-    setRealVh();
-
-    // Update on resize and orientation change
-    window.addEventListener('resize', () => {
-        // Add a small delay to ensure the browser UI is settled
-        setTimeout(setRealVh, 100);
-    });
-
-    window.addEventListener('orientationchange', setRealVh);
-
-    // Handle Chrome mobile scroll events
-    let lastHeight = window.innerHeight;
-    window.addEventListener('scroll', () => {
-        const newHeight = window.innerHeight;
-        if (lastHeight !== newHeight) {
-            lastHeight = newHeight;
-            setRealVh();
-        }
-    });
+    setRealVhOnWidthChange();
 });
 
 function openContactForm(product) {
@@ -214,4 +214,3 @@ function closeModalAndScroll(modalId) {
         });
     }, 300); // Match Bootstrap's modal transition time
 }
-
