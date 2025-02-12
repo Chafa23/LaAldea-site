@@ -13,7 +13,7 @@
     <meta property="og:locale" content="es_UY">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image" content="https://www.laaldeatala.com.uy/assets/images/og-image.jpg">
+    <meta property="og:image" content="https://www.laaldeatala.com.uy/assets/images/og-image.webp">
     <meta property="og:updated_time" content="2024-03-14T00:00:00+00:00">
     <meta property="og:image:alt" content="La Aldea - Tala, Uruguay">
     <meta property="business:contact_data:street_address" content="Ruta 7 Tala">
@@ -29,6 +29,91 @@
     <meta name="geo.position" content="-34.346943768995686, -55.76359424741334">
     <meta name="google-site-verification" content="lYJjPHSWvPfp-ESChiwEme_s9RdmfrhvfC5fI2fISAM" />
     <title>La Aldea - Instalaciones Hidráulicas, bombas de agua, insumos agrícolas, droguería y herramientas en Tala, Uruguay</title>
+    
+    <!-- Add critical CSS before external stylesheets -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #28A745;
+            --dark-blue: #004085;
+            --transition: all 0.3s ease;
+        }
+
+        /* Essential styles for immediate visibility */
+        .navbar {
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            background-color: transparent;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            padding: 1rem 0;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero-section {
+            height: 100vh;
+            height: 100dvh;
+            background-image: url('assets/images/laaldeaedificio.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: calc(var(--vh, 1vh) * 100);
+                background-attachment: scroll;
+            }
+        }
+    </style>
+
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="assets/css/style.css">
+    </noscript>
+    
+    <!-- Preload scripts -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" as="script">
+    <link rel="preload" href="assets/js/main.js" as="script">
+
+    <!-- Add loadCSS polyfill for better browser support -->
+    <script>
+        !function(e){"use strict";var n=function(n,t,o){function i(e){if(a.body)return e();setTimeout(function(){i(e)})}function r(){l.addEventListener&&l.removeEventListener("load",r),l.media=o||"all"}var d,a=e.document,l=a.createElement("link");if(t)d=t;else{var f=(a.body||a.getElementsByTagName("head")[0]).childNodes;d=f[f.length-1]}var s=a.styleSheets;l.rel="stylesheet",l.href=n,l.media="only x",i(function(){d.parentNode.insertBefore(l,t?d:d.nextSibling)});var u=function(e){for(var n=l.href,t=s.length;t--;)if(s[t].href===n)return e();setTimeout(function(){u(e)})};return l.addEventListener&&l.addEventListener("load",r),l.onloadcssdefined=u,u(r),l};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
+        !function(t){if(t.loadCSS){var e=loadCSS.relpreload={};if(e.support=function(){try{return t.document.createElement("link").relList.supports("preload")}catch(t){return!1}},e.poly=function(){for(var e=t.document.getElementsByTagName("link"),r=0;r<e.length;r++){var n=e[r];"preload"===n.rel&&"style"===n.getAttribute("as")&&(t.loadCSS(n.href,n,n.getAttribute("media")),n.rel=null)}},!e.support()){e.poly();var r=t.setInterval(e.poly,300);t.addEventListener&&t.addEventListener("load",function(){e.poly(),t.clearInterval(r)}),t.attachEvent&&t.attachEvent("onload",function(){t.clearInterval(r)})}}}(this);</script>
+
     <link rel="canonical" href="https://www.laaldeatala.com.uy">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -46,13 +131,13 @@
     <link rel="preconnect" href="https://cdn.statically.io/" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <!-- Resources -->
-    <link rel="preload" as="image" href="assets/images/laaldeaedificio.jpg">
-    <link rel="preload" href="assets/images/logo.png" as="image">
+    <link rel="preload" as="image" href="assets/images/laaldeaedificio.webp">
+    <link rel="preload" href="assets/images/logo.webp" as="image">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" as="style">
     <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="preload" href="assets/fonts/your-main-font.woff2" as="font" crossorigin>
-    <link rel="preload" href="assets/images/laaldeaedificio.jpg" as="image">
+    <link rel="preload" href="assets/images/laaldeaedificio.webp" as="image">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -68,9 +153,9 @@
         "name": "La Aldea",
         "alternateName": "La Aldea Tala",
         "url": "https://www.laaldeatala.com.uy",
-        "logo": "https://www.laaldeatala.com.uy/assets/images/logo.png",
+        "logo": "https://www.laaldeatala.com.uy/assets/images/logo.webp",
         "image": [
-        "https://www.laaldeatala.com.uy/assets/images/store-front.jpg"
+        "https://www.laaldeatala.com.uy/assets/images/laaldeaedificio.webp", //
         ],
         "description": "Especialistas en bombas de riego agrícola, sistemas de riego, droguería industrial y productos para piscinas en Tala, Canelones",
         "slogan": "Todo lo que necesitas para tu campo, hogar y piscina",
@@ -89,6 +174,7 @@
             "postalCode": "91800",
             "addressCountry": "UY"
         },
+        "hasMap": "https://maps.app.goo.gl/4oUish4o13iMrJ2c9",
         "areaServed": ["Tala", "Canelones", "Uruguay"],
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
@@ -171,7 +257,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="La Aldea - Insumos agrícolas y más en Tala">
     <meta name="twitter:description" content="Todo lo que necesitas para tu campo, hogar y piscina en un solo lugar.">
-    <meta name="twitter:image" content="https://www.laaldeatala.com.uy/assets/images/og-image.jpg">
+    <meta name="twitter:image" content="https://www.laaldeatala.com.uy/assets/images/og-image.webp">
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg">
@@ -190,7 +276,13 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#hero">
-                <img src="assets/images/logo.png" alt="La Aldea Logo" height="40" loading="lazy" decoding="async">
+                <img 
+                    src="assets/images/logo.webp" 
+                    srcset="assets/images/logo.webp 300w"
+                    alt="La Aldea Logo" 
+                    height="40" 
+                    loading="lazy" 
+                    decoding="async">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -263,7 +355,16 @@
                     </div>
                     <div class="col-lg-6" data-aos="fade-left">
                         <div class="about-image">
-                            <img src="assets/images/laaldeaedificio.jpg" alt="La Aldea Business" class="img-fluid rounded shadow" loading="lazy" decoding="async">
+                            <img 
+                                src="assets/images/laaldeaedificio.webp"
+                                srcset="assets/images/laaldeaedificio.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       (max-width: 1200px) 50vw,
+                                       33vw"
+                                alt="La Aldea Business"
+                                class="img-fluid rounded shadow"
+                                loading="lazy"
+                                decoding="async">
                             <div class="experience-badge">
                                 <span class="years">25+</span>
                                 <span class="text">Años de Experiencia</span>
@@ -285,67 +386,133 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/gianni.jpg" alt="Gianni" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/gianni.webp"
+                        srcset="assets/images/partners/gianni.webp"
+                        alt="Gianni"
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">Gianni</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/diu.jpg" alt="droguería Industrial Uruguaya" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/diu.webp"
+                        srcset="assets/images/partners/diu.webp"
+                        alt="DIU"
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">droguería Industrial Uruguaya</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/tigre1.png" alt="Tigre" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/tigre1.webp" 
+                        srcset="assets/images/partners/tigre1.webp"
+                        alt="Tigre" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">Tigre</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/nicoll.png" alt="nicoll" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/nicoll.webp"
+                        srcset="assets/images/partners/nicoll.webp"
+                        alt="nicoll" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">nicoll</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/hidroservice.png" alt="hidroservice" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/hidroservice.webp"
+                        srcset="assets/images/partners/hidroservice.webp"
+                        alt="hidroservice" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">hidroservice</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/pacifil.png" alt="pacifil" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/pacifil.webp"
+                        srcset="assets/images/partners/pacifil.webp"
+                        alt="pacifil" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">pacifil</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/cablinur.png" alt="cablinur" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/cablinur.webp" 
+                        srcset="assets/images/partners/cablinur.webp"
+                            alt="cablinur"
+                            class="img-fluid mx-auto d-block"
+                            loading="lazy"
+                            decoding="async">
                     <h5 class="d-none">cablinur</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/lesa.png" alt="lesa" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/lesa.webp"
+                        srcset="assets/images/partners/lesa.webp"
+                        alt="lesa" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">lesa</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/ramasil.png" alt="ramasil" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/ramasil.webp"
+                        srcset="assets/images/partners/ramasil.webp"
+                        alt="ramasil" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async"> 
                     <h5 class="d-none">ramasil</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/balaguer.png" alt="balaguer" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/balaguer.webp"
+                        srcset="assets/images/partners/balaguer.webp"
+                        alt="balaguer" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">balaguer</h5>
                 </div>
                 </div>
                 <div class="col-lg-3 col-md-6" data-aos="fade-up">
                 <div class="partner text-center">
-                    <img src="assets/images/partners/armco.png" alt="armco" class="img-fluid mx-auto d-block">
+                    <img 
+                        src="assets/images/partners/armco.webp"
+                        srcset="assets/images/partners/armco.webp"
+                        alt="armco" 
+                        class="img-fluid mx-auto d-block"
+                        loading="lazy"
+                        decoding="async">
                     <h5 class="d-none">armco</h5>
                 </div>
                 </div>
@@ -363,7 +530,7 @@
                 </div>
         
                 <div class="service-banner" data-aos="fade-up">
-                    <div class="service-image" style="background-image: url('assets/images/services/irrigation.jpg')">
+                    <div class="service-image" style="background-image: url('assets/images/services/irrigation.webp')" loading="lazy" decoding="async"></div>
                         <div class="service-overlay">
                             <div class="service-content">
                                 <h3>Instalaciones Hidráulicas</h3>
@@ -392,7 +559,15 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="assets/images/products/agricultural.jpg" alt="Bombas de riego y sistemas de irrigación agrícola" loading="lazy" decoding="async">
+                                <img 
+                                    src="assets/images/products/agricultural.webp"
+                                    srcset="assets/images/products/agricultural.webp 600w"
+                                    sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw"
+                                    alt="Bombas de riego y sistemas de irrigación agrícola"
+                                    loading="lazy"
+                                    decoding="async">
                                 <div class="overlay">
                                     <i class="fas fa-seedling"></i>
                                 </div>
@@ -411,7 +586,15 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="assets/images/products/drogueria.jpg" alt="Productos de droguería industrial y químicos" loading="lazy" decoding="async">
+                                <img 
+                                    src="assets/images/products/drogueria.webp"
+                                    srcset="assets/images/products/drogueria.webp 600w"
+                                    sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw"
+                                    alt="Productos de droguería industrial y químicos" 
+                                    loading="lazy" 
+                                    decoding="async">
                                 <div class="overlay">
                                     <i class="fas fa-flask"></i>
                                 </div>
@@ -430,7 +613,15 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="assets/images/products/tools.jpg" alt="Herramientas" loading="lazy" decoding="async">
+                                <img 
+                                    src="assets/images/products/tools.webp" 
+                                    srcset="assets/images/products/tools.webp 600w"
+                                    sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw"
+                                    alt="Herramientas" 
+                                    loading="lazy" 
+                                    decoding="async">
                                 <div class="overlay">
                                     <i class="fas fa-tools"></i>
                                 </div>
@@ -449,7 +640,15 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="assets/images/products/pool.jpg" alt="Productos para Piscinas" loading="lazy" decoding="async">
+                                <img 
+                                    src="assets/images/products/pool.webp"
+                                    srcset="assets/images/products/pool.webp 600w"
+                                    sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw"
+                                    alt="Productos para Piscinas" 
+                                    loading="lazy" 
+                                    decoding="async">
                                 <div class="overlay">
                                     <i class="fas fa-swimming-pool"></i>
                                 </div>
@@ -468,7 +667,15 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="assets/images/products/filters.jpg" alt="Filtros y purificadores de agua para el hogar" loading="lazy" decoding="async">
+                                <img 
+                                    src="assets/images/products/filters.webp"
+                                    srcset="assets/images/products/filters.webp 600w"
+                                    sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" 
+                                    alt="Filtros y purificadores de agua para el hogar" 
+                                    loading="lazy" 
+                                    decoding="async">
                                 <div class="overlay">
                                     <i class="fas fa-filter"></i>
                                 </div>
@@ -487,7 +694,15 @@
                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
                         <div class="product-card">
                             <div class="product-image">
-                                <img src="assets/images/products/renewable.jpg" alt="Energías Renovables" loading="lazy" decoding="async">
+                                <img 
+                                    src="assets/images/products/renewable.webp"
+                                    srcset="assets/images/products/renewable.webp 600w"
+                                    sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw"
+                                    alt="Energías Renovables" 
+                                    loading="lazy" 
+                                    decoding="async">
                                 <div class="overlay">
                                     <i class="fas fa-solar-panel"></i>
                                 </div>
@@ -656,7 +871,8 @@
                                 height="450" 
                                 style="border:0;" 
                                 allowfullscreen="" 
-                                loading="lazy">
+                                loading="lazy"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3294.132426112131!2d-55.76619062561081!3d-34.347107643989176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a06b0d701e68b7%3A0x5c6ea977f048f63!2sLa%20Aldea%20-%20Mart%C3%ADn%20Betancor%20Peregalli!5e0!3m2!1sen!2sus!4v1738039005938!5m2!1sen!2sus">
                             </iframe>
                         </div>
                     </div>
@@ -669,7 +885,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <img src="assets/images/logo.png" alt="La Aldea Logo" height="40" class="mb-3" loading="lazy" decoding="async">
+                    <img 
+                        src="assets/images/logo.webp" 
+                        srcset="assets/images/logo.webp 300w"
+                        alt="La Aldea Logo" 
+                        height="40" 
+                        class="mb-3"
+                        loading="lazy" 
+                        decoding="async">
                     <p>Tu socio de confianza en soluciones agrícolas y más</p>
                     <div class="social-media">
                         <a href="https://www.facebook.com/profile.php?id=61561171162882&locale=es_LA" target="_blank" class="social-link">
@@ -765,7 +988,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/products/agricultural.jpg" class="img-fluid rounded" alt="Insumos Agrícolas">
+                            <img 
+                                src="assets/images/products/agricultural.webp"
+                                srcset="assets/images/products/agricultural.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       50vw"
+                                alt="Agricultural Products"
+                                class="img-fluid rounded"
+                                loading="lazy"
+                                decoding="async">
                         </div>
                         <div class="col-md-6">
                             <h6 class="fw-bold">Productos Destacados:</h6>
@@ -803,7 +1034,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/products/drogueria.jpg" class="img-fluid rounded" alt="Droguería Industrial">
+                            <img 
+                                src="assets/images/products/drogueria.webp"
+                                srcset="assets/images/products/drogueria.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       50vw" 
+                                loading="lazy" 
+                                decoding="async"
+                                class="img-fluid rounded" 
+                                alt="Droguería Industrial">
                         </div>
                         <div class="col-md-6">
                             <h6 class="fw-bold">Productos Destacados:</h6>
@@ -840,7 +1079,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/products/tools.jpg" class="img-fluid rounded" alt="Herramientas">
+                            <img 
+                                src="assets/images/products/tools.webp"
+                                srcset="assets/images/products/tools.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       50vw" 
+                                loading="lazy" 
+                                decoding="async"
+                                alt="Herramientas"
+                                class="img-fluid rounded">
                         </div>
                         <div class="col-md-6">
                             <h6 class="fw-bold">Productos Destacados:</h6>
@@ -877,7 +1124,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/products/pool.jpg" class="img-fluid rounded" alt="Piscinas">
+                            <img 
+                                src="assets/images/products/pool.webp" 
+                                srcset="assets/images/products/pool.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       50vw" 
+                                loading="lazy" 
+                                decoding="async"
+                                class="img-fluid rounded" 
+                                alt="Piscinas">
                         </div>
                         <div class="col-md-6">
                             <h6 class="fw-bold">Productos Destacados:</h6>
@@ -916,7 +1171,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/products/filters.jpg" class="img-fluid rounded" alt="Filtros de Agua">
+                            <img 
+                                src="assets/images/products/filters.webp"
+                                srcset="assets/images/products/filters.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       50vw" 
+                                loading="lazy" 
+                                decoding="async"
+                                class="img-fluid rounded" 
+                                alt="Filtros de Agua">
                         </div>
                             <div class="col-md-6">
                                 <h6 class="fw-bold">Productos Destacados:</h6>
@@ -954,7 +1217,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/products/renewable.jpg" class="img-fluid rounded" alt="Energia Renovable">
+                            <img 
+                                src="assets/images/products/renewable.webp"
+                                srcset="assets/images/products/renewable.webp 800w"
+                                sizes="(max-width: 768px) 100vw,
+                                       50vw" 
+                                loading="lazy" 
+                                decoding="async"
+                                class="img-fluid rounded" 
+                                alt="Energia Renovable">
                         </div>
                         <div class="col-md-6">
                             <h6 class="fw-bold">Productos Destacados:</h6>

@@ -2,6 +2,23 @@
   publish = "src"
   command = ""
 
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
+
 [[headers]]
   for = "/*"
     [headers.values]
@@ -11,21 +28,18 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Content-Security-Policy = "default-src 'self' https:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:;"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-  
-[[headers]]
-  for = "/*.css"
-    [headers.values]
+    Accept-Encoding = "br,gzip"
     Cache-Control = "public, max-age=31536000"
 
 [[headers]]
-  for = "/*.js"
+  for = "/assets/*"
     [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/assets/images/*"
+  for = "/*.webp"
     [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=31536000, immutable"
 
 [[redirects]]
   from = "/*"
@@ -36,3 +50,6 @@
   from = "/*"
   to = "/404.html"
   status = 404
+
+[[plugins]]
+package = "@netlify/plugin-lighthouse"

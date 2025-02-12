@@ -89,17 +89,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Separate observers for images and backgrounds for better performance
     const lazyLoadImages = () => {
-        const images = document.querySelectorAll('[data-src]');
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    imageObserver.unobserve(img);
-                }
-            });
-        }, lazyLoadOptions);
-        images.forEach(img => imageObserver.observe(img));
+        if (!('loading' in HTMLImageElement.prototype)) {
+            const images = document.querySelectorAll('[data-src]');
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        imageObserver.unobserve(img);
+                    }
+                });
+            }, lazyLoadOptions);
+            images.forEach(img => imageObserver.observe(img));
+        }
     };
 
     const lazyLoadBackgrounds = () => {
@@ -123,6 +125,26 @@ document.addEventListener("DOMContentLoaded", function() {
     const observer = new IntersectionObserver(lazyLoad, lazyLoadOptions);
     document.querySelectorAll('[data-src], [data-bg]').forEach(el => observer.observe(el));
 
+    // Image loading optimization
+    function loadOptimizedImages() {
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
+            });
+        } else {
+            // Import lazy loading polyfill for older browsers
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/loading-attribute-polyfill/1.5.4/loading-attribute-polyfill.min.js';
+            document.head.appendChild(script);
+        }
+    }
+
+    // Initialize image optimization
+    loadOptimizedImages();
+
     // Scroll to top button
     const scrollToTopBtn = document.getElementById("scrollToTop");
 
@@ -139,6 +161,33 @@ document.addEventListener("DOMContentLoaded", function() {
             top: 0,
             behavior: "smooth"
         });
+    });
+
+    // Calculate real viewport height for mobile Chrome
+    function setRealVh() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--real-vh', `${vh}px`);
+    }
+
+    // Initial calculation
+    setRealVh();
+
+    // Update on resize and orientation change
+    window.addEventListener('resize', () => {
+        // Add a small delay to ensure the browser UI is settled
+        setTimeout(setRealVh, 100);
+    });
+
+    window.addEventListener('orientationchange', setVH);
+
+    // Handle Chrome mobile scroll events
+    let lastHeight = window.innerHeight;
+    window.addEventListener('scroll', () => {
+        const newHeight = window.innerHeight;
+        if (lastHeight !== newHeight) {
+            lastHeight = newHeight;
+            setRealVh();
+        }
     });
 });
 
@@ -165,3 +214,4 @@ function closeModalAndScroll(modalId) {
         });
     }, 300); // Match Bootstrap's modal transition time
 }
+
