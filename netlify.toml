@@ -15,11 +15,11 @@
 
 [build.processing.html]
   pretty_urls = true
-  minify = true    # Add HTML minification
+  minify = true
 
 [build.processing.images]
   compress = true
-  quality = 85     # Optimize image quality
+  quality = 85
 
 # Security Headers
 [[headers]]
@@ -87,14 +87,6 @@
   status = 404
   force = true
 
-# Performance plugins
+# Only include officially supported plugins
 [[plugins]]
 package = "@netlify/plugin-lighthouse"
-
-[[plugins]]
-package = "netlify-plugin-cache"
-  [plugins.inputs]
-    paths = [
-      "node_modules/.cache",
-      "public"
-    ]
