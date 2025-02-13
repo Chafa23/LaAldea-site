@@ -675,22 +675,9 @@ section:nth-child(even) {
 }
 
 /* Responsive design */
-/* Responsive design */
 @media (max-width: 768px) {
-    #hero {
-        height: 110vh; /* Changed from 70vh to 100vh */
-        min-height: -webkit-fill-available; /* For iOS */
-    }
-
     .navbar-brand img {
         height: 30px;
-    }
-    
-    .hero-section {
-        height: 110vh;
-        min-height: -webkit-fill-available; /* For iOS */
-        background-attachment: scroll; /* Better mobile performance */
-        margin-top: -56px; /* Mobile navbar height */
     }
 
     .hero-title {
@@ -715,23 +702,26 @@ section:nth-child(even) {
 @supports (-webkit-touch-callout: none) {
     .hero-section {
         background-attachment: scroll;
-        min-height: -webkit-fill-available;
-    }
-    
-    body {
-        width: 100vw;
-        position: relative;
-    }
-
-    /* Fix for notched iPhones */
-    @media screen and (orientation: landscape) {
-        .hero-section {
-            height: 100vh;
-            height: -webkit-fill-available;
-        }
     }
 }
 
+
+@media (max-width: 768px) {
+    .g-recaptcha {
+        transform: scale(0.77);
+        transform-origin: left center;
+        margin-bottom: 10px;
+    }
+
+    .contact-form-wrapper {
+        padding: 1.5rem; /* Slightly reduce padding on mobile */
+    }
+
+    /* Ensure the form container can handle the scaled reCAPTCHA */
+    #contact-form {
+        min-width: 270px; /* Minimum width to prevent overflow */
+    }
+}
 
 .container {
     padding-left: 15px;
