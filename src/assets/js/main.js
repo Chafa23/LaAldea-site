@@ -165,27 +165,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function setPageHeights() {
         const sections = document.querySelectorAll('section');
+        // Get height once and lock it
         const height = window.innerHeight;
         
         sections.forEach(section => {
             if (section.id === 'hero') {
-                // Hero section always full height
-                section.style.height = `${height}px`;
+                // Only set height if not already set
+                if (!section.hasAttribute('data-height-set')) {
+                    section.style.height = `${height}px`;
+                    section.setAttribute('data-height-set', 'true');
+                }
             } else if (window.innerWidth <= 768) {
-                // On mobile, set min-height instead of height for other sections
                 section.style.minHeight = `${height}px`;
             } else {
-                // On desktop, use normal flow for other sections
                 section.style.minHeight = '';
             }
         });
     }
-
-    // Set initial heights
-    setPageHeights();
-
-    // Only update on orientation change and initial load
+    
+    // Set initial heights only once when DOM loads
+    document.addEventListener('DOMContentLoaded', setPageHeights);
+    
+    // Update heights only on orientation change
     window.addEventListener('orientationchange', () => {
+        // Remove the height lock
+        const heroSection = document.querySelector('#hero');
+        if (heroSection) {
+            heroSection.removeAttribute('data-height-set');
+        }
+        // Update heights after a small delay
         setTimeout(setPageHeights, 100);
     });
 
