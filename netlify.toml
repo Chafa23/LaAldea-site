@@ -37,7 +37,6 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-    Link = "</assets/css/style.css>; rel=preload; as=style, </assets/js/main.js>; rel=preload; as=script"
 
 [[headers]]
   for = "/*.css"
