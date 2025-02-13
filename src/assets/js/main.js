@@ -189,15 +189,6 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(setPageHeights, 100);
     });
 
-    // Handle initial page load and resize
-    let initialLoad = true;
-    window.addEventListener('resize', () => {
-        if (initialLoad || window.innerWidth > 768) {
-            setPageHeights();
-            initialLoad = false;
-        }
-    });
-
     // Remove other height-related event listeners
     // Remove setHeroHeight function and its event listeners
 });
