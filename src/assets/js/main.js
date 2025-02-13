@@ -8,12 +8,95 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 500);
     }
 
-    // Initialize AOS
-    AOS.init({
-        duration: 800,
-        once: true,
-        offset: 100
-    });
+    // Set hero section height (critical)
+    function setHeroHeight() {
+        const heroSection = document.getElementById('hero');
+        if (heroSection && !heroSection.hasAttribute('data-height-set')) {
+            heroSection.style.height = window.innerHeight + 'px';
+            heroSection.setAttribute('data-height-set', 'true');
+        }
+    }
+
+    // Initialize navbar with optimized scroll handling (critical)
+    function initializeNavbar() {
+        let lastScroll = 0;
+        let scrollTimeout;
+        function handleScroll() {
+            const currentScroll = window.pageYOffset;
+            const navbar = document.querySelector("nav");
+            // Update navbar classes
+            if (currentScroll > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+            // Show/hide navbar based on scroll direction
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                navbar.style.transform = "translateY(-100%)";
+            } else {
+                navbar.style.transform = "translateY(0)";
+            }
+            lastScroll = currentScroll;
+            // Update scroll-to-top button
+            const scrollToTopBtn = document.getElementById("scrollToTop");
+            if (scrollToTopBtn) {
+                scrollToTopBtn.style.display = currentScroll > 300 ? "flex" : "none";
+            }
+        }
+        window.addEventListener('scroll', () => {
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(() => {
+                    handleScroll();
+                    scrollTimeout = null;
+                }, 50);
+            }
+        });
+    }
+
+    // Optimized lazy loading using IntersectionObserver
+    const optimizedLazyLoadObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    optimizedLazyLoadObserver.unobserve(img);
+                }
+            }
+        });
+    }, { threshold: 0.1, rootMargin: "50px" });
+
+    function initializeLazyLoading() {
+        document.querySelectorAll('img[data-src]').forEach(img =>
+            optimizedLazyLoadObserver.observe(img)
+        );
+    }
+
+    // Defer non-critical feature initializations
+    function initializeAOS() {
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    }
+
+    function initializeCookieConsent() {
+        if (cookieConsent && typeof cookieConsent.init === "function") {
+            cookieConsent.init();
+        }
+    }
+
+    // Critical operations
+    setHeroHeight();
+    initializeNavbar();
+    
+    // Defer non-critical operations
+    setTimeout(() => {
+        initializeLazyLoading();
+        initializeAOS();
+        initializeCookieConsent();
+    }, 1000);
 
     // Cookie Consent Management
     const cookieConsent = {
@@ -37,9 +120,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Initialize cookie consent
-    cookieConsent.init();
-
     // Smooth scrolling with offset
     const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(link => {
@@ -55,30 +135,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 behavior: "smooth"
             });
         });
-    });
-
-    // Enhanced navbar functionality
-    const navbar = document.querySelector("nav");
-    let lastScroll = 0;
-
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        // Add/remove scrolled class
-        if (currentScroll > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-
-        // Hide/show navbar on scroll
-        if (currentScroll > lastScroll && currentScroll > 500) {
-            navbar.style.transform = "translateY(-100%)";
-        } else {
-            navbar.style.transform = "translateY(0)";
-        }
-
-        lastScroll = currentScroll;
     });
 
     // Lazy loading for images and background images
