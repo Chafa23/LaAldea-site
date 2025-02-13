@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="description" content="La Aldea: Expertos en en sistemas de riego, bombas de agua, insumos agrícolas, piscinas, ferretería, energias renovables y droguería en Tala, Canelones Uruguay.">
     <meta name="keywords" content="La Aldea Tala, bombas de agua, sistemas de riego, droguería, agropecuaria, filtros de agua, tanques de agua, piscinas, mantenimiento de piscinas, energías renovables, paneles solares, ferretería, herramientas, Tala Uruguay, La Aldea, Martín Betancor, instalaciones hidráulicas">
     <meta property="og:title" content="La Aldea - Instalaciones Hidráulicas, bombas de agua, insumos agrícolas, Hidraulica, droguería, herramientas y más.">
@@ -61,9 +61,10 @@
             background-image: url('assets/images/laaldeaedificio.webp');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             position: relative;
             overflow: hidden;
+            height: 100vh;
+            background-attachment: fixed;
         }
 
         .hero-overlay {
@@ -73,6 +74,31 @@
             right: 0;
             bottom: 0;
             background: rgba(0,0,0,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: var(--locked-height, 100vh);
+                background-attachment: scroll;
+                position: relative;
+                -webkit-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+
+            body {
+                min-height: var(--locked-height, 100vh);
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            section:not(.hero-section) {
+                min-height: auto;
+                height: auto;
+                position: relative;
+                z-index: 1;
+            }
         }
 
         .preloader {
@@ -87,18 +113,6 @@
             align-items: center;
             z-index: 9999;
             transition: opacity 0.5s ease;
-        }
-
-        @media (min-width: 769px) {
-            .hero-section {
-                background-attachment: fixed;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                background-attachment: scroll;
-            }
         }
     </style>
 

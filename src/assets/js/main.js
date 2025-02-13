@@ -163,35 +163,28 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Add this consolidated height handler
-    function handleHeroHeight() {
-        const heroSection = document.querySelector('.hero-section');
-        if (!heroSection) return;
-
+    function lockMobileHeight() {
         if (window.innerWidth <= 768) {
-            // Mobile: Use innerHeight to avoid address bar issues
-            heroSection.style.height = `${window.innerHeight}px`;
-        } else {
-            // Desktop: Use vh units for full viewport height
-            heroSection.style.height = '100vh';
+            // Get height once and lock it
+            const height = window.innerHeight;
+            document.documentElement.style.setProperty('--locked-height', `${height}px`);
+            
+            // Apply to hero section
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.style.height = `${height}px`;
+            }
         }
     }
-
-    // Initial setup
-    handleHeroHeight();
-
-    // Handle orientation changes
+    
+    // Lock height once on page load
+    document.addEventListener('DOMContentLoaded', lockMobileHeight);
+    
+    // Only update on orientation change
     window.addEventListener('orientationchange', () => {
-        setTimeout(handleHeroHeight, 100);
+        setTimeout(lockMobileHeight, 100);
     });
-
-    // Handle resize with debounce (only for desktop/mobile switches)
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(handleHeroHeight, 250);
-    });
-
+    
 });
 
 function openContactForm(product) {
