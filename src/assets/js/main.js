@@ -163,30 +163,43 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    function lockMobileHeight() {
-        if (window.innerWidth <= 768) {
-            // Get height once and lock it
-            const height = window.innerHeight;
-            document.documentElement.style.setProperty('--locked-height', `${height}px`);
-            
-            // Apply to hero section
-            const heroSection = document.querySelector('.hero-section');
+    function setPageHeights() {
+        const sections = document.querySelectorAll('section');
+        const height = window.innerHeight;
+        
+        sections.forEach(section => {
             if (section.id === 'hero') {
-                heroSection.style.height = `${height}px`;
-            } else {
+                // Hero section always full height
+                section.style.height = `${height}px`;
+            } else if (window.innerWidth <= 768) {
+                // On mobile, set min-height instead of height for other sections
                 section.style.minHeight = `${height}px`;
+            } else {
+                // On desktop, use normal flow for other sections
+                section.style.minHeight = '';
             }
-        }
+        });
     }
-    
-    // Lock height once on page load
-    document.addEventListener('DOMContentLoaded', lockMobileHeight);
-    
-    // Only update on orientation change
+
+    // Set initial heights
+    setPageHeights();
+
+    // Only update on orientation change and initial load
     window.addEventListener('orientationchange', () => {
-        setTimeout(lockMobileHeight, 100);
+        setTimeout(setPageHeights, 100);
     });
-    
+
+    // Handle initial page load and resize
+    let initialLoad = true;
+    window.addEventListener('resize', () => {
+        if (initialLoad || window.innerWidth > 768) {
+            setPageHeights();
+            initialLoad = false;
+        }
+    });
+
+    // Remove other height-related event listeners
+    // Remove setHeroHeight function and its event listeners
 });
 
 function openContactForm(product) {
