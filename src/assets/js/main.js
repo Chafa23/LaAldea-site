@@ -163,22 +163,42 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    function setInitialHeight() {
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            // Set height once and lock it
-            const initialHeight = window.innerHeight;
-            heroSection.style.height = `${initialHeight}px`;
-        }
+    function setPageHeights() {
+        const sections = document.querySelectorAll('section');
+        // Get height once and lock it
+        const height = window.innerHeight;
+        
+        sections.forEach(section => {
+            if (section.id === 'hero') {
+                // Only set height if not already set
+                if (!section.hasAttribute('data-height-set')) {
+                    section.style.height = `${height}px`;
+                    section.setAttribute('data-height-set', 'true');
+                }
+            } else if (window.innerWidth <= 768) {
+                section.style.minHeight = `${height}px`;
+            } else {
+                section.style.minHeight = '';
+            }
+        });
     }
-
-    // Set height once when page loads
-    setInitialHeight();
-
-    // Only update on orientation change
+    
+    // Set initial heights only once when DOM loads
+    document.addEventListener('DOMContentLoaded', setPageHeights);
+    
+    // Update heights only on orientation change
     window.addEventListener('orientationchange', () => {
-        setTimeout(setInitialHeight, 100);
+        // Remove the height lock
+        const heroSection = document.querySelector('#hero');
+        if (heroSection) {
+            heroSection.removeAttribute('data-height-set');
+        }
+        // Update heights after a small delay
+        setTimeout(setPageHeights, 100);
     });
+
+    // Remove other height-related event listeners
+    // Remove setHeroHeight function and its event listeners
 });
 
 function openContactForm(product) {
