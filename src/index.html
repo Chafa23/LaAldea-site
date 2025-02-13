@@ -63,8 +63,6 @@
             background-position: center;
             position: relative;
             overflow: hidden;
-            height: 100vh;
-            background-attachment: fixed;
         }
 
         .hero-overlay {
@@ -78,7 +76,6 @@
 
         @media (max-width: 768px) {
             .hero-section {
-                height: var(--locked-height, 100vh);
                 background-attachment: scroll;
                 position: relative;
                 -webkit-transform: translateZ(0);
@@ -87,18 +84,6 @@
                 backface-visibility: hidden;
             }
 
-            body {
-                min-height: var(--locked-height, 100vh);
-                overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            section:not(.hero-section) {
-                min-height: auto;
-                height: auto;
-                position: relative;
-                z-index: 1;
-            }
         }
 
         .preloader {
