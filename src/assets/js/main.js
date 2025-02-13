@@ -171,8 +171,10 @@ document.addEventListener("DOMContentLoaded", function() {
             
             // Apply to hero section
             const heroSection = document.querySelector('.hero-section');
-            if (heroSection) {
+            if (section.id === 'hero') {
                 heroSection.style.height = `${height}px`;
+            } else {
+                section.style.minHeight = `${height}px`;
             }
         }
     }
