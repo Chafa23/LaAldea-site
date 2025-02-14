@@ -386,14 +386,12 @@ const cookieConsent = {
     banner: DOMElements.cookieBanner,
     
     init() {
-        // Only show if not accepted
         if (!localStorage.getItem('cookiesAccepted')) {
-            // Delay cookie banner
-            setTimeout(() => {
+            (window.requestIdleCallback || setTimeout)(() => {
                 if (this.banner) {
                     this.banner.style.display = 'block';
                 }
-            }, 2000); // Show after 2 seconds
+            }, { timeout: 2000 });
         }
     },
 
