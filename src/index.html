@@ -1247,6 +1247,25 @@
     
     <!-- Analytics and external services last -->
     <script async src="assets/js/analytics.js"></script>
-    <script async defer src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        // Load reCAPTCHA only when form is in viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const recaptchaScript = document.createElement('script');
+                    recaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
+                    recaptchaScript.defer = true;
+                    document.body.appendChild(recaptchaScript);
+                    observer.disconnect();
+                }
+            });
+        });
+    
+        // Observe contact form
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contact-form');
+            if (form) observer.observe(form);
+        });
+    </script>
 </body>
 </html>
