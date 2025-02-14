@@ -212,7 +212,16 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class=container>
             <a class=navbar-brand href=#hero>
-                <img src=assets/images/logo.webp srcset="assets/images/logo.webp 300w" alt="La Aldea Logo" height=40 width=163 class=mb-3 loading=lazy decoding=async>
+                <img
+                src="assets/images/logo.webp"
+                srcset="assets/images/logo.webp 300w"
+                alt="La Aldea Logo"
+                height="40"
+                width="163"
+                class="navbar-logo"
+                fetchpriority="high"
+                decoding="sync"
+            >
             </a>
             <button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-label="Toggle navigation">
                 <span class=navbar-toggler-icon></span>
