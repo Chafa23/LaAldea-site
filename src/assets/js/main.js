@@ -49,6 +49,37 @@ const utils = {
                 setTimeout(() => inThrottle = false, limit);
             }
         };
+    },
+
+    loadInteractiveMap() {
+        const mapContainer = document.getElementById('mapContainer');
+        const staticMap = mapContainer.querySelector('img');
+        
+        if (!mapContainer || !staticMap) return;
+        
+        const mapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3294.132426112131!2d-55.76619062561081!3d-34.347107643989176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a06b0d701e68b7%3A0x5c6ea977f048f63!2sLa%20Aldea%20-%20Mart%C3%ADn%20Betancor%20Peregalli!5e0!3m2!1sen!2sus!4v1738039005938!5m2!1sen!2sus';
+                    iframe.width = '100%';
+                    iframe.height = '450';
+                    iframe.style.border = '0';
+                    iframe.allowFullscreen = true;
+                    iframe.loading = 'lazy';
+                    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+                    iframe.title = 'La Aldea Location Map';
+                    
+                    mapContainer.replaceChild(iframe, staticMap);
+                    mapObserver.disconnect();
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+        
+        mapObserver.observe(mapContainer);
     }
 };
 
@@ -306,6 +337,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
             analyticsLoader.init();
+            utils.loadInteractiveMap();
             // Initialize smooth scrolling
             initializeSmoothScroll();
             initializeCookieConsent();
