@@ -1,40 +1,41 @@
 const analyticsLoader = {
-    GA_ID: 'G-K06VE6W4MY',  // Make ID configurable
-    
     init() {
-        // Only initialize if user consents to cookies
-        if (!localStorage.getItem('cookiesAccepted')) {
-            return;
-        }
-
+        // Load analytics after user interaction or 3 seconds
         const loadAnalytics = () => {
-            const script = document.createElement('script');
-            script.src = `https://www.googletagmanager.com/gtag/js?id=${this.GA_ID}`;
-            script.async = true;
-            document.head.appendChild(script);
+            if (window.requestIdleCallback) {
+                requestIdleCallback(() => this.loadScript());
+            } else {
+                this.loadScript();
+            }
 
-            script.onload = () => {
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                window.gtag = gtag;
-                gtag('js', new Date());
-                gtag('config', 'G-K06VE6W4MY', {
-                    'page_title': document.title,
-                    'page_location': window.location.href
-                });
-                this.initializeTracking();
-            };
-
-            // Cleanup with existing code
+            // Cleanup after loading
             window.removeEventListener('scroll', loadTrigger);
             clearTimeout(timer);
         };
 
-        // Use existing debounce and event listeners
         const loadTrigger = this.debounce(loadAnalytics, 500);
         const timer = setTimeout(loadAnalytics, 3000);
 
         window.addEventListener('scroll', loadTrigger, { passive: true });
+    },
+
+    loadScript() {
+        const script = document.createElement('script');
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-K06VE6W4MY';
+        script.async = true;
+        document.head.appendChild(script);
+
+        script.onload = () => {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-K06VE6W4MY', {
+                'page_title': document.title,
+                'send_page_view': false
+            });
+            this.initializeTracking();
+        };
     },
 
     trackProductInterest(product) {
