@@ -160,12 +160,17 @@ const scrollManager = {
             return;
         }
 
-        // Replace the existing scroll listener with this optimized version
+        // passive scroll listener
         window.addEventListener('scroll', 
             utils.throttle(() => {
                 requestAnimationFrame(() => this.handleScroll());
-            }, 50)
+            }, 50),
+            { passive: true }
         );
+
+        ['touchstart', 'touchmove', 'wheel'].forEach(eventType => {
+            window.addEventListener(eventType, () => {}, { passive: true });
+        });
 
         DOMElements.scrollToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -366,14 +371,16 @@ function initializeSmoothScroll() {
             e.preventDefault();
             const targetId = this.getAttribute("href");
             const targetElement = document.querySelector(targetId);
-            const navHeight = document.querySelector('nav').offsetHeight;
-            const targetPosition = targetElement.offsetTop - navHeight;
+            if (targetElement) {
+                const navHeight = document.querySelector('nav')?.offsetHeight || 0;
+                const targetPosition = targetElement.offsetTop - navHeight;
 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: "smooth"
-            });
-        });
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
+            }
+        }, { passive: false }); 
     });
 }
 
