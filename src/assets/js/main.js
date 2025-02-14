@@ -293,60 +293,22 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Add utility function for viewport checking
-    function isInViewport(selector) {
-        const el = document.querySelector(selector);
-        if (!el) return false;
-        const rect = el.getBoundingClientRect();
-        return rect.top <= window.innerHeight && rect.bottom >= 0;
-    }
-
-    // Add AOS loader function
-    function loadAOS() {
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/aos@2.3.1/dist/aos.js';
-        script.onload = () => {
-            AOS.init({
-                duration: 800,
-                once: true,
-                offset: 100
-            });
-        };
-        document.head.appendChild(script);
-    }
-
-    // Updated deferredInit
+    // Non-critical initialization
     const deferredInit = () => {
         utils.safeExecute(() => {
-            // Essential lazy loading first
             lazyLoading.init();
             
-            // Initialize cookies early (UX consideration)
-            initializeCookieConsent();
-            
-            // Smooth scroll (doesn't depend on external resources)
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 100
+                });
+            }
+            analyticsLoader.init();
+            // Initialize smooth scrolling
             initializeSmoothScroll();
-            
-            // Load AOS only when needed
-            if (isInViewport('[data-aos]')) {
-                loadAOS();
-            } else {
-                // Load AOS when scrolling near AOS elements
-                const aosObserver = new IntersectionObserver((entries) => {
-                    if (entries[0].isIntersecting) {
-                        loadAOS();
-                        aosObserver.disconnect();
-                    }
-                }, { rootMargin: '50px' });
-                
-                const aosElement = document.querySelector('[data-aos]');
-                if (aosElement) aosObserver.observe(aosElement);
-            }
-
-            // Initialize analytics after critical content
-            if (typeof analyticsLoader !== 'undefined') {
-                analyticsLoader.init();
-            }
+            initializeCookieConsent();
         }, "Deferred initialization failed");
     };
 
