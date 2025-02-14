@@ -385,27 +385,52 @@ function initializeCookieConsent() {
 
 const cookieConsent = {
     banner: DOMElements.cookieBanner,
-    acceptButton: document.getElementById('acceptCookiesBtn'),
+    acceptButton: DOMElements.cookieAcceptBtn,
     
     init() {
-        if (!localStorage.getItem('cookiesAccepted')) {
-            requestIdleCallback(() => {
-                if (this.banner) {
-                    this.banner.style.display = 'block';
-                    // Add event listener to accept button
-                    this.acceptButton?.addEventListener('click', () => this.accept());
-                }
-            });
+        // Don't show banner if cookies already accepted
+        if (localStorage.getItem('cookiesAccepted')) return;
+
+        // Delay cookie banner display until after critical content
+        if (window.requestIdleCallback) {
+            requestIdleCallback(() => this.showBanner(), { timeout: 3000 });
+        } else {
+            setTimeout(() => this.showBanner(), 2000);
         }
+    },
+
+    showBanner() {
+        if (!this.banner) return;
+
+        // Set initial styles before showing
+        this.banner.style.opacity = '0';
+        this.banner.style.transform = 'translateY(100%)';
+        this.banner.style.display = 'block';
+
+        // Force browser reflow
+        this.banner.offsetHeight;
+
+        // Add transition and show
+        requestAnimationFrame(() => {
+            this.banner.style.transition = 'opacity 0.3s, transform 0.3s';
+            this.banner.style.opacity = '1';
+            this.banner.style.transform = 'translateY(0)';
+        });
+
+        // Add event listener
+        this.acceptButton?.addEventListener('click', () => this.accept());
     },
 
     accept() {
         localStorage.setItem('cookiesAccepted', 'true');
-        if (this.banner) {
-            this.banner.style.opacity = '0';
-            setTimeout(() => {
-                this.banner.style.display = 'none';
-            }, 300);
-        }
+        
+        // Animate out
+        this.banner.style.opacity = '0';
+        this.banner.style.transform = 'translateY(100%)';
+        
+        setTimeout(() => {
+            this.banner.style.display = 'none';
+            this.banner.remove(); // Remove from DOM completely
+        }, 300);
     }
 };
