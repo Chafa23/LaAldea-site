@@ -7,7 +7,10 @@ const DOMElements = {
     sections: document.querySelectorAll("section"),
     hero: document.getElementById('hero'),
     lazyImages: document.querySelectorAll('[data-src]'),
-    lazyBackgrounds: document.querySelectorAll('[data-bg]')
+    lazyBackgrounds: document.querySelectorAll('[data-bg]'),
+    modalButtons: document.querySelectorAll('[data-bs-toggle="modal"]'),
+    navigationLinks: document.querySelectorAll('a[href^="#"]'),
+    mainContent: document.querySelector('main')
 };
 
 // Enhanced utility functions
@@ -34,7 +37,23 @@ const utils = {
             this.logWarning(errorMessage, error);
             return null;
         }
+    },
+
+    throttle(func, limit) {
+        let inThrottle;
+        return function(...args) {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
     }
+};
+
+const observerOptions = {
+    threshold: [0, 0.5, 1.0],
+    rootMargin: '50px',
 };
 
 // Enhanced lazy loading with separate observers
@@ -46,7 +65,7 @@ const lazyLoading = {
                 this.handleImageLoad(img);
             }
         });
-    }, { threshold: 0.1 }),
+    }, observerOptions),
 
     backgroundObserver: new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -75,16 +94,57 @@ const lazyLoading = {
         }, `Failed to load background: ${element.dataset.bg}`);
     },
 
+    handleIframeLoad(iframe) {
+        utils.safeExecute(() => {
+            if (iframe.dataset.src) {
+                iframe.src = iframe.dataset.src;
+                this.iframeObserver.unobserve(iframe);
+            }
+        }, `Failed to load iframe: ${iframe.dataset.src}`);
+    },
+
+    iframeObserver: new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const iframe = entry.target;
+                this.handleIframeLoad(iframe);
+            }
+        });
+    }, { 
+        threshold: 0,
+        rootMargin: '100px' // Increased margin to load earlier
+    }),
+
     init() {
-        if (!('loading' in HTMLImageElement.prototype)) {
-            DOMElements.lazyImages.forEach(img => this.imageObserver.observe(img));
-        }
-        DOMElements.lazyBackgrounds.forEach(el => this.backgroundObserver.observe(el));
+        utils.safeExecute(() => {
+            // Native lazy loading check for images
+            if (!('loading' in HTMLImageElement.prototype)) {
+                DOMElements.lazyImages.forEach(img => this.imageObserver.observe(img));
+            }
+            
+            // Background images
+            DOMElements.lazyBackgrounds.forEach(el => this.backgroundObserver.observe(el));
+            
+            // Handle Google Maps iframe
+            const mapIframe = document.querySelector('.map-container iframe');
+            if (mapIframe) {
+                // Load map immediately without lazy loading
+                if (mapIframe.dataset.src) {
+                    mapIframe.src = mapIframe.dataset.src;
+                }
+            }
+        }, "Lazy loading initialization failed");
     },
 
     cleanup() {
         this.imageObserver.disconnect();
         this.backgroundObserver.disconnect();
+        this.iframeObserver.disconnect();
+        DOMElements.sections.forEach(section => {
+            section.removeAttribute('data-height-set');
+        });
+        window.removeEventListener('orientationchange', heightManager.handleOrientationChange);
+        performance.marks.clear();
     }
 };
 
@@ -99,12 +159,12 @@ const scrollManager = {
             return;
         }
 
-        window.addEventListener('scroll', () => {
-            if (!this.ticking) {
+        // Replace the existing scroll listener with this optimized version
+        window.addEventListener('scroll', 
+            utils.throttle(() => {
                 requestAnimationFrame(() => this.handleScroll());
-                this.ticking = true;
-            }
-        });
+            }, 50)
+        );
 
         DOMElements.scrollToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: "smooth" });
@@ -166,17 +226,57 @@ document.addEventListener("DOMContentLoaded", function() {
     // Critical initialization
     const criticalInit = () => {
         utils.safeExecute(() => {
-            if (DOMElements.loader) {
-                setTimeout(() => {
-                    DOMElements.loader.style.opacity = '0';
-                    setTimeout(() => DOMElements.loader.style.display = 'none', 500);
-                }, 500);
-            }
+            performanceMonitor.startTime = performance.now();
 
+            // Initialize core functionality first
             heightManager.setPageHeights();
             scrollManager.init();
+
+            // Handle loader immediately if document is ready
+            if (DOMElements.loader) {
+                if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                    removeLoader();
+                } else {
+                    // Remove loader as soon as DOM is ready
+                    document.addEventListener('DOMContentLoaded', removeLoader, { once: true });
+                }
+            }
         }, "Critical initialization failed");
     };
+
+    // Add Performance Monitoring
+    const performanceMonitor = {
+        startTime: performance.now(),
+        
+        logTiming(label) {
+            const duration = performance.now() - this.startTime;
+            utils.logWarning(`${label}: ${duration.toFixed(2)}ms`);
+        }
+    };
+
+    // Add removeLoader helper function
+    function removeLoader() {
+        if (!DOMElements.loader) return;
+    
+        performanceMonitor.logTiming('Time to loader removal');
+    
+        // Remove loader immediately
+        requestAnimationFrame(() => {
+            DOMElements.loader.style.transition = 'opacity 0.2s';
+            DOMElements.loader.style.opacity = '0';
+            
+            // Show main content immediately
+            if (DOMElements.mainContent) {
+                DOMElements.mainContent.style.visibility = 'visible';
+            }
+            
+            // Remove loader after transition
+            setTimeout(() => {
+                DOMElements.loader.remove();
+                performanceMonitor.logTiming('Total load time');
+            }, 500); // Reduced from 300ms
+        });
+    }
 
     // Non-critical initialization
     const deferredInit = () => {
