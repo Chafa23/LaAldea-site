@@ -79,14 +79,18 @@ body {
 .navbar-logo {
     height: 40px;
     width: 163px;
-    object-fit: contain;    /* Preserve aspect ratio */
-    display: block;         /* Remove extra space */
+    object-fit: contain;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
 }
 
 .navbar-brand {
     display: inline-flex;
     align-items: center;
-    height: 40px;          /* Container height matches logo */
+    height: 40px;
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
 }
 
 /* Update hero section styles */
@@ -748,7 +752,6 @@ section:nth-child(even) {
         background-attachment: scroll;
     }
 }
-
 
 @media (max-width: 768px) {
     .g-recaptcha {
