@@ -661,11 +661,13 @@ section:nth-child(even) {
 }
 
 .review-card {
-    background: #21923b;
+    background: #f8f9fa;  /* Light gray background */
     padding: 1.5rem;
     border-radius: 8px;
     text-align: center;
     margin-top: 1rem;
+    color: #212529;  /* Dark gray text for high contrast */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Subtle shadow to make card stand out */
 }
 
 .review-card .btn {
