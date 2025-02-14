@@ -51,12 +51,6 @@
             z-index: 1030;
         }
 
-        .navbar.scrolled {
-            padding: 1rem 0;
-            background-color: var(--primary-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
         .hero-section {
             height: 100vh;
             background-image: url('assets/images/laaldeaedificio.webp');
@@ -64,26 +58,6 @@
             background-position: center;
             position: relative;
             overflow: hidden;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.4);
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                background-attachment: scroll;
-                position: relative;
-                -webkit-transform: translateZ(0);
-                transform: translateZ(0);
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-            }
         }
 
         .preloader {
@@ -97,7 +71,15 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s ease;
+            transition: opacity 0.5s ease-out;
+        }
+        
+        main {
+            visibility: hidden;
+        }
+        
+        .content-loaded main {
+            visibility: visible;
         }
     </style>
 
@@ -268,7 +250,7 @@
 <body>
     <div class="preloader">
         <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+            <span class="visually-hidden"></span>
         </div>
     </div>
     <!-- Navbar -->
@@ -861,15 +843,13 @@
                         </div>
                         <div class="map-container">
                             <iframe 
-                                data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3294.132426112131!2d-55.76619062561081!3d-34.347107643989176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a06b0d701e68b7%3A0x5c6ea977f048f63!2sLa%20Aldea%20-%20Mart%C3%ADn%20Betancor%20Peregalli!5e0!3m2!1sen!2sus!4v1738039005938!5m2!1sen!2sus"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3294.132426112131!2d-55.76619062561081!3d-34.347107643989176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a06b0d701e68b7%3A0x5c6ea977f048f63!2sLa%20Aldea%20-%20Mart%C3%ADn%20Betancor%20Peregalli!5e0!3m2!1sen!2sus!4v1738039005938!5m2!1sen!2sus"
                                 width="100%" 
                                 height="450"
-                                alt = "mapa"
                                 style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3294.132426112131!2d-55.76619062561081!3d-34.347107643989176!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a06b0d701e68b7%3A0x5c6ea977f048f63!2sLa%20Aldea%20-%20Mart%C3%ADn%20Betancor%20Peregalli!5e0!3m2!1sen!2sus!4v1738039005938!5m2!1sen!2sus"
-                                onload="if(this.dataset.src)this.src=this.dataset.src;">
+                                allowfullscreen=""
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="La Aldea Location Map">
                             </iframe>
                         </div>
                     </div>
