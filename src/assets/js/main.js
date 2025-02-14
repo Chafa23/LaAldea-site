@@ -4,6 +4,7 @@ const DOMElements = {
     navbar: document.querySelector("nav"),
     scrollToTop: document.getElementById("scrollToTop"),
     cookieBanner: document.getElementById("cookieConsent"),
+    cookieAcceptBtn: document.getElementById("acceptCookiesBtn"),
     sections: document.querySelectorAll("section"),
     hero: document.getElementById('hero'),
     lazyImages: document.querySelectorAll('[data-src]'),
@@ -384,14 +385,17 @@ function initializeCookieConsent() {
 
 const cookieConsent = {
     banner: DOMElements.cookieBanner,
+    acceptButton: document.getElementById('acceptCookiesBtn'),
     
     init() {
         if (!localStorage.getItem('cookiesAccepted')) {
-            (window.requestIdleCallback || setTimeout)(() => {
+            requestIdleCallback(() => {
                 if (this.banner) {
                     this.banner.style.display = 'block';
+                    // Add event listener to accept button
+                    this.acceptButton?.addEventListener('click', () => this.accept());
                 }
-            }, { timeout: 2000 });
+            });
         }
     },
 
