@@ -93,31 +93,44 @@
 
     <!-- Preconnect to important domains -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
     <!-- Preload critical resources -->
     <link rel="preload" href="assets/images/laaldeaedificio.webp" as="image" fetchpriority="high">
     <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp" fetchpriority="high">
-    <link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="preconnect" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
 
     <!-- Non-critical CSS with async loading -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" fetchpriority="low">
-    <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'">
-    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/solid.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-    
-    <!-- Fallback for no-JS -->
-    <noscript>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" fetchpriority="low">
-        <link rel="stylesheet" href="assets/css/style.css" media="print" onload="this.media='all'">
-        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/solid.min.css" rel="stylesheet" media="print" onload="this.media='all'">
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="print" onload="this.media='all'">
-    </noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        media="print" 
+        onload="this.media='all'" 
+        fetchpriority="low">
+    <link rel="stylesheet" 
+        href="assets/css/style.css" 
+        media="print" 
+        onload="this.media='all'">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" 
+        rel="stylesheet" 
+        media="print" 
+        onload="this.media='all'" 
+        fetchpriority="low">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+        rel="stylesheet" 
+        media="print" 
+        onload="this.media='all'">
+
+<!-- Fallback for no-JS -->
+<noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</noscript>
     
     <script type="application/ld+json">
     {
