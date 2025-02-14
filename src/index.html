@@ -34,21 +34,19 @@
     <style>
         :root{--primary-color:#007BFF;--secondary-color:#28A745;--dark-blue:#004085;--transition:all 0.3s ease}.navbar{padding:1.5rem 0;transition:var(--transition);background-color:transparent;position:fixed;top:0;width:100%;z-index:1030}.hero-section{height:100vh;background-image:url(assets/images/laaldeaedificio.webp);background-size:cover;background-position:center;position:relative;overflow:hidden}.preloader{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;justify-content:center;align-items:center;z-index:9999;transition:opacity .1s ease-out}main{visibility:hidden}.content-loaded main{visibility:visible}
         
-        .navbar-logo {
-            height: 40px;
-            width: 163px;
-            object-fit: contain;
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
-            backface-visibility: hidden;
-        }
-        
         .navbar-brand {
             display: inline-flex;
             align-items: center;
             height: 40px;
-            transform: translate3d(0, 0, 0);
-            will-change: transform;
+            contain: layout style;
+        }
+        
+        .navbar-logo {
+            width: 163px;
+            height: 40px;
+            object-fit: contain;
+            transform: translateZ(0);
+            contain: layout style;
         }
     </style>
 
@@ -61,6 +59,7 @@
     <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp" fetchpriority="high" importance="high">
     <link rel="preload" href="assets/css/style.css" as="style">
     <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="/" crossorigin>
     <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <link rel="preconnect" href="https://maps.googleapis.com" crossorigin>
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
@@ -231,16 +230,15 @@
         <div class=container>
             <a class=navbar-brand href=#hero>
                 <img
-                src="assets/images/logo.webp"
-                srcset="assets/images/logo.webp 163w"
-                sizes="163px"
-                alt="La Aldea Logo"
-                height="40"
-                width="163"
-                class="navbar-logo"
-                fetchpriority="high"
-                decoding="sync"
-            >
+                    src="assets/images/logo.webp"
+                    alt="La Aldea Logo"
+                    width="163"
+                    height="40"
+                    fetchpriority="highest"
+                    decoding="sync"
+                    importance="high"
+                    class="navbar-logo"
+                >
             </a>
             <button class=navbar-toggler type=button data-bs-toggle=collapse data-bs-target=#navbarNav aria-label="Toggle navigation">
                 <span class=navbar-toggler-icon></span>
