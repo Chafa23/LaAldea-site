@@ -9,6 +9,10 @@
         <lastmod>2024-03-14T12:00:00+00:00</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://www.laaldeatala.com.uy/assets/images/logo.webp</image:loc>
+            <image:title>La Aldea Logo</image:title>
+        </image:image>
     </url>
     <url>
         <loc>https://www.laaldeatala.com.uy/privacy-policy.html</loc>
