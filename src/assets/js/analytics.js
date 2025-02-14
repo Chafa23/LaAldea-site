@@ -1,8 +1,15 @@
 const analyticsLoader = {
+    GA_ID: 'G-K06VE6W4MY',  // Make ID configurable
+    
     init() {
+        // Only initialize if user consents to cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            return;
+        }
+
         const loadAnalytics = () => {
             const script = document.createElement('script');
-            script.src = 'https://www.googletagmanager.com/gtag/js?id=G-K06VE6W4MY';
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${this.GA_ID}`;
             script.async = true;
             document.head.appendChild(script);
 
@@ -18,11 +25,12 @@ const analyticsLoader = {
                 this.initializeTracking();
             };
 
-            // Cleanup
+            // Cleanup with existing code
             window.removeEventListener('scroll', loadTrigger);
             clearTimeout(timer);
         };
 
+        // Use existing debounce and event listeners
         const loadTrigger = this.debounce(loadAnalytics, 500);
         const timer = setTimeout(loadAnalytics, 3000);
 
