@@ -227,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const criticalInit = () => {
         utils.safeExecute(() => {
             performanceMonitor.startTime = performance.now();
+            performanceMonitor.markStart();
+            performanceMonitor.measureLCP();
 
             // Initialize core functionality first
             heightManager.setPageHeights();
@@ -248,6 +250,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const performanceMonitor = {
         startTime: performance.now(),
         
+        markStart() {
+            performance.mark('pageStart');
+        },
+        
+        measureLCP() {
+            new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                utils.logWarning(`LCP: ${lastEntry.startTime.toFixed(2)}ms`);
+            }).observe({ entryTypes: ['largest-contentful-paint'] });
+        },
+        
         logTiming(label) {
             const duration = performance.now() - this.startTime;
             utils.logWarning(`${label}: ${duration.toFixed(2)}ms`);
@@ -262,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
         // Remove loader immediately
         requestAnimationFrame(() => {
-            DOMElements.loader.style.transition = 'opacity 0.2s';
+            DOMElements.loader.style.transition = 'opacity 0.1s';
             DOMElements.loader.style.opacity = '0';
             
             // Show main content immediately
@@ -274,7 +288,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 DOMElements.loader.remove();
                 performanceMonitor.logTiming('Total load time');
-            }, 500); // Reduced from 300ms
+            }, 100); // Reduced from 300ms
         });
     }
 
@@ -372,9 +386,14 @@ const cookieConsent = {
     banner: DOMElements.cookieBanner,
     
     init() {
-        if (!localStorage.getItem('cookiesAccepted') && this.banner) {
-            this.banner.style.display = 'block';
-            this.banner.querySelector('button')?.addEventListener('click', () => this.accept());
+        // Only show if not accepted
+        if (!localStorage.getItem('cookiesAccepted')) {
+            // Delay cookie banner
+            setTimeout(() => {
+                if (this.banner) {
+                    this.banner.style.display = 'block';
+                }
+            }, 2000); // Show after 2 seconds
         }
     },
 
