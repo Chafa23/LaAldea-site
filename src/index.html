@@ -646,7 +646,7 @@
                     
                     <div class=col-lg-6 data-aos=fade-right>
                         <div class=contact-form-wrapper>
-                            <form id=contact-form action=https://formspree.io/f/mbldypgk method=POST>
+                            <form id=contact-form action=https://formspree.io/f/mbldypgk method=POST novalidate>
                                 <div class=mb-3>
                                     <label for=name class=form-label>Nombre</label>
                                     <input class=form-control id=name name=name required>
@@ -662,8 +662,9 @@
                                 
                                 <input name=_gotcha style=display:none>
                                 <input type=hidden name=_subject value="Nuevo mensaje de La Aldea">
-                                <div class=mb-3>
-                                    <div class=g-recaptcha data-sitekey=6Ldp8MoqAAAAAPE58l1o8tghOXFVKA1JkH-KqerW></div>
+                                <div class="g-recaptcha mb-3" 
+                                    data-sitekey="6Ldp8MoqAAAAAPE58l1o8tghOXFVKA1JkH-KqerW"
+                                    data-callback="onRecaptchaSuccess">
                                 </div>
                                 <div class=form-response></div>
                                 <button type=submit class="btn btn-primary">
@@ -1054,26 +1055,6 @@
     
     <!-- Analytics and external services last -->
     <script async src="assets/js/analytics.js"></script>
-    <script>
-        // Load reCAPTCHA only when form is in viewport
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const recaptchaScript = document.createElement('script');
-                    recaptchaScript.src = 'https://www.google.com/recaptcha/api.js';
-                    recaptchaScript.defer = true;
-                    document.body.appendChild(recaptchaScript);
-                    observer.disconnect();
-                }
-            });
-        });
-    
-        // Observe contact form
-        document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('contact-form');
-            if (form) observer.observe(form);
-        });
-    </script>
 </body>
 </html>
 
