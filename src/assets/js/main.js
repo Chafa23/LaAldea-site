@@ -527,3 +527,23 @@ const cookieConsent = {
         }, 300);
     }
 };
+
+// Replace your current AOS initialization with this
+document.addEventListener('DOMContentLoaded', function() {
+  // Add class only after fonts and resources are loaded
+  window.addEventListener('load', function() {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.add('aos-initialized');
+        
+        // Enable AOS animations after layout is stable
+        if (window.AOS) {
+          AOS.init({
+            once: true,
+            startEvent: 'load'
+          });
+        }
+      });
+    });
+  });
+});
