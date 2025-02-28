@@ -1,891 +1,1114 @@
-/* Custom styles for La Aldea website */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* Color palette */
-:root {
-    --light-blue: #EAF4FF;
-    --light-green: #E6F5E8;
-    --text-color: #343A40;
-}
-
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    position: relative;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.scroll-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: var(--primary-color);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    z-index: 999;
-    transition: var(--transition);
-}
-
-.scroll-to-top:hover {
-    transform: translateY(-3px);
-    background: var(--dark-blue);
-}
-
-/* Body styles */
-body {
-    font-family: Arial, sans-serif;
-    color: var(--neutral-color);
-    margin: 0;
-    padding: 0;
-}
-
-/* Navbar */
-
-.navbar-nav .nav-link {
-    color: white !important;
-    font-weight: 500;
-    padding: 0.5rem 1rem !important;
-    transition: var(--transition);
-}
-
-.navbar-nav .nav-link:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-}
-
-.navbar.scrolled {
-    padding: 1rem 0;
-    background-color: var(--primary-color);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.navbar-logo {
-    height: 40px;
-    width: 163px;
-    object-fit: contain;
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-.navbar-brand {
-    display: inline-flex;
-    align-items: center;
-    height: 40px;
-    transform: translate3d(0, 0, 0);
-    will-change: transform;
-}
-
-@media (max-width: 768px) {
-    /* Add to style.css */
-    .navbar.menu-open {
-        background-color: var(--primary-color) !important;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    /* Style the dropdown menu itself */
-    .navbar-collapse.show {
-        padding: 1rem;
-        border-radius: 0 0 8px 8px;
-    }
-
-    /* Improve dropdown item visibility */
-    .navbar-nav .nav-link {
-        padding: 0.75rem 1rem !important;
-        margin: 0.25rem 0;
-        border-radius: 4px;
-    }
-
-    /* Add hover effect for better visual feedback */
-    .navbar-nav .nav-link:hover {
-        background-color: rgba(255,255,255,0.1);
-    }
-}
-
-
-/* Update hero section styles */
-
-.hero-title {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;  /* Reduced from 1.5rem */
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    letter-spacing: 1px;
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 2rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    letter-spacing: 0.5px;
-}
-
-.btn-outline-light {
-    border-width: 2px;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.btn-outline-light:hover {
-    background: white;
-    color: var(--primary-color);
-    transform: translateY(-3px);
-}
-
-.owner-subtitle {
-    font-size: 1.25rem;
-    font-weight: 500;
-    font-style: italic;
-    opacity: 0.9;
-    letter-spacing: 0.5px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    margin-bottom: 1rem;  /* Added margin-bottom */
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.4);
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        background-attachment: scroll;
-        position: relative;
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-}
-
-@media (max-width: 768px) {
-    .owner-subtitle {
-        font-size: 1.1rem;
-    }
-}
-
-/* Buttons */
-.btn {
-    transition: var(--transition);
-    border-radius: 50px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-/* About Section */
-.about-section {
-    background-color: var(--light-blue);
-    position: relative;
-    overflow: hidden;
-}
-
-.about-content {
-    padding-right: 2rem;
-}
-
-.about-features {
-    margin-top: 2rem;
-}
-
-.feature {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.feature i {
-    margin-right: 1rem;
-    font-size: 1.25rem;
-}
-
-.about-image {
-    position: relative;
-    padding: 1rem;
-}
-
-.about-image img {
-    border-radius: 15px;
-    transition: transform 0.3s ease;
-}
-
-.about-image:hover img {
-    transform: scale(1.02);
-}
-
-.experience-badge {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--primary-color);
-    color: white;
-    padding: 1.5rem;
-    border-radius: 50%;
-    text-align: center;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.experience-badge .years {
-    font-size: 2rem;
-    font-weight: bold;
-    line-height: 1;
-}
-
-.experience-badge .text {
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
-}
-
-@media (max-width: 991px) {
-    .about-content {
-        padding-right: 0;
-        margin-bottom: 3rem;
-    }
+<!doctype html>
+<html lang=es>
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta name=description content="La Aldea: Especialistas en sistemas de riego, bombas de agua, insumos agrícolas, droguería, piscinas y energías renovables. Todo para tu campo y hogar en Tala, Canelones, Uruguay.">
+    <meta name=keywords content="La Aldea Tala, bombas de agua, sistemas de riego, droguería, agropecuaria, filtros de agua, tanques de agua, piscinas, mantenimiento de piscinas, energías renovables, paneles solares, ferretería, herramientas, Tala, Canelones, Uruguay, La Aldea, Martín Betancor, instalaciones hidráulicas, , Gianni, DIU, Tigre, Nicoll, Hidroservice, Pacifil, Cablinur, Lesa, Ramasil, Balaguer, Armco, droguería Industrial Uruguaya">
     
-    .experience-badge {
-        bottom: 1rem;
-        right: 1rem;
-        width: 100px;
-        height: 100px;
-    }
-}
-
-/* Services Section */
-.service-banner {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.service-image {
-    position: relative;
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.service-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 100%);
-    display: flex;
-    align-items: center;
-    padding: 3rem;
-    transition: var(--transition);
-}
-
-.service-content {
-    color: white;
-    max-width: 600px;
-}
-
-.service-content h3 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-}
-
-.service-content p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-.service-banner:hover .service-overlay {
-    background: linear-gradient(to right, rgba(0,123,255,0.8) 0%, rgba(0,123,255,0.4) 100%);
-}
-
-@media (max-width: 768px) {
-    .service-image {
-        height: 300px;
-    }
+    <meta property=og:title content="La Aldea - Instalaciones Hidráulicas, bombas de agua, insumos agrícolas, Hidraulica, droguería, herramientas y más.">
+    <meta property=og:description content="Todo lo que necesitas para tu campo, hogar y piscina en un solo lugar.">
+    <meta property=og:type content=website>
+    <meta property=og:url content=https://www.laaldeatala.com.uy/ >
+    <meta property=og:site_name content="La Aldea Tala">
+    <meta property=og:locale content=es_UY>
+    <meta property=og:image:width content=1200>
+    <meta property=og:image:height content=630>
+    <meta property=og:image content=https://www.laaldeatala.com.uy/assets/images/og-image.webp>
+    <meta property=og:updated_time content=2024-03-14T00:00:00+00:00>
+    <meta property=og:image:alt content="La Aldea - Tala, Uruguay">
     
-    .service-content h3 {
-        font-size: 2rem;
-    }
+    <meta property=business:contact_data:street_address content="Ruta 7 Tala">
+    <meta property=business:contact_data:locality content=Tala>
+    <meta property=business:contact_data:region content=Canelones>
+    <meta property=business:contact_data:country_name content=Uruguay>
+    <meta property=business:contact_data:phone_number content=+59892744725>
+    <meta name=robots content="index, follow">
+    <meta name=author content="La Aldea">
+    <meta name=image-rendering content=optimizeQuality>
+    <meta name=geo.region content="UY-AR, UY-CA, UY-CL, UY-CO, UY-DU, UY-FS, UY-FD, UY-LA, UY-MA, UY-MO, UY-PA, UY-RN, UY-RV, UY-RO, UY-SA, UY-SJ, UY-SO, UY-TA, UY-TT">
+    <meta name=geo.placename content="Tala, Canelones, San Ramón, San Jacinto, Migues, San Bautista, Santa Rosa, Montes, Fray Marcos, Casupá, Punta del Este, Montevideo">
+    <meta name=geo.position content="-34.346943768995686, -55.76359424741334">
+    <meta name=google-site-verification content=lYJjPHSWvPfp-ESChiwEme_s9RdmfrhvfC5fI2fISAM>
+    <title>La Aldea | Sistemas de Riego, Bombas de Agua, Herramientas, Drogueria e Insumos Agrícolas - Tala, Uruguay</title>
     
-    .service-content p {
-        font-size: 1rem;
-    }
-}
-
-/* products Section */
-
-.products-section {
-    background-color: white;
-    padding: 4rem 0; /* Consistent padding */
-}
-
-.row.g-4 {
-    margin-top: 0 !important; /* Remove extra top space */
-    margin-bottom: 2rem; /* Add bottom margin */
-}
-
-.product-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    margin-bottom: 1.5rem; /* Reduce bottom margin */
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-}
-
-.product-image {
-    position: relative;
-    height: 200px; /* Slightly reduce image height */
-    overflow: hidden;
-}
-
-.product-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-image img {
-    transform: scale(1.1);
-}
-
-.product-image .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,123,255,0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.product-card:hover .overlay {
-    opacity: 1;
-}
-
-.overlay i {
-    color: white;
-    font-size: 3rem;
-}
-
-.product-content {
-    padding: 1.25rem; /* Reduce padding */
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Better content distribution */
-}
-
-.product-content h3 {
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem; /* Smaller title */
-}
-
-.product-content p {
-    flex: 1;
-    margin-bottom: 1rem;
-    font-size: 0.85rem; /* Smaller text */
-    color: var(--text-color);
-}
-
-.product-content .btn {
-    align-self: center;
-    margin-top: auto;
-}
-
-@media (min-width: 992px) {
-    .products-section .col-lg-3 {
-        width: 16.666667%; /* 6 columns in a row */
-        padding: 0 0.75rem; /* Reduce horizontal padding */
-    }
-}
-
-/* Adjust container max-width */
-.products-section .container {
-    max-width: 1400px; /* Wider container for 6 cards */
-}
-
-/* Testimonials Section */
-.testimonials-section {
-    background-color: var(--light-blue);
-}
-.testimonials-section .container {
-    padding: 4rem;
-}
-.testimonials-section .testimonial {
-    margin-bottom: 1.5rem;
-}
-.testimonials-section .testimonial .testimonial-content {
-    margin-bottom: 1rem;
-}
-
-.testimonials-section .testimonial .testimonial-content i {
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--primary-color);  
-    opacity: 0.8;  
-}
-
-.testimonials-section .testimonial .testimonial-content p {
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--text-color);
-}
-
-.testimonials-section .testimonial.testimonial-name {
-    font-size: 1.25rem;
-    color: var(--primary-color);
-    margin-bottom: 0;
-}
-.testimonials-section .testimonial.testimonial-name span {
-    color: var(--text-color);
-    font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
-    .testimonial-card {
-        margin-bottom: 1.5rem;
-    }
     
-    .testimonial-author {
-        flex-direction: column;
-        text-align: center;
-    }
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #28A745;
+            --dark-blue: #004085;
+            --transition: all 0.3s ease
+        }
+
+        .navbar {
+            padding: 1.5rem 0;
+            transition: var(--transition);
+            background-color: transparent;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1030
+        }
+
+        .hero-section {
+            height: 100vh;
+            background-image: url(assets/images/laaldeaedificio.webp);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity .1s ease-out
+        }
+
+        main {
+            visibility: hidden
+        }
+
+        .content-loaded main {
+            visibility: visible
+        }
+        
+        .navbar-brand {
+            display: inline-flex;
+            align-items: center;
+            height: 40px;
+            contain: layout style;
+        }
+        
+        .navbar-logo {
+            width: 163px;
+            height: 40px;
+            object-fit: contain;
+            transform: translateZ(0);
+            contain: layout style;
+        }
+    </style>
+
+    <link rel=canonical href=https://www.laaldeatala.com.uy>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="assets/images/laaldeaedificio.webp" as="image" fetchpriority="high">
+    <link rel="preload" href="assets/images/logo.webp" as="image" type="image/webp" fetchpriority="high" importance="high">
+    <link rel="preload" href="assets/css/style.css" as="style">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="/" crossorigin>
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+
+    <!-- Non-critical CSS with async loading -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        media="print" 
+        onload="this.media='all'" 
+        fetchpriority="low">
+    <link rel="stylesheet" 
+        href="assets/css/style.css" 
+        media="print" 
+        onload="this.media='all'">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" 
+        rel="stylesheet" 
+        media="print" 
+        onload="this.media='all'" 
+        fetchpriority="low">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" 
+        rel="stylesheet" 
+        media="print" 
+        onload="this.media='all'">
+
+    <!-- Fallback for no-JS -->
+    <noscript>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    </noscript>
     
-    .testimonial-img {
-        margin: 0 0 1rem 0;
+    <script type=application/ld+json>
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "founder": {
+            "@type": "Person",
+            "name": "Martín Betancor"
+        },
+        "sameAs": [
+            "https://www.facebook.com/profile.php?id=61561171162882",
+            "https://www.instagram.com/laaldeatala/"
+        ],
+        "name": "La Aldea",
+        "alternateName": "La Aldea Tala",
+        "url": "https://www.laaldeatala.com.uy",
+        "logo": "https://www.laaldeatala.com.uy/assets/images/logo.webp",
+        "image": [
+        "https://www.laaldeatala.com.uy/assets/images/laaldeaedificio.webp", //
+        ],
+        "description": "Especialistas en bombas de riego agrícola, sistemas de riego, droguería industrial y productos para piscinas en Tala, Canelones",
+        "slogan": "Todo lo que necesitas para tu campo, hogar y piscina",
+        "priceRange": "$$",
+        "telephone": [
+            "4315 4393",
+            "+598 92 744 725"
+        ],
+        "paymentAccepted": ["cash", "credit card", "debit card"],
+        "currenciesAccepted": ["UYU", "USD"],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "José Alonso y Trelles y Av artigas",
+            "addressLocality": "Tala",
+            "addressRegion": "Canelones",
+            "postalCode": "91800",
+            "addressCountry": "UY"
+        },
+        "hasMap": "https://maps.app.goo.gl/4oUish4o13iMrJ2c9",
+        "areaServed": ["Tala", "Canelones", "Uruguay"],
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Productos Principales", 
+            "itemListElement": [
+            {
+                "@type": "OfferCatalog",
+                "name": "Bombas de Riego",
+                "description": "Bombas de agua y sistemas de riego"
+            },
+            {
+                "@type": "OfferCatalog", 
+                "name": "Droguería Industrial",
+                "description": "Productos químicos y soluciones para mantenimiento"
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "Herramientas",
+                "description": "Herramientas manuales y eléctricas de calidad"
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "Piscinas",
+                "description": "Productos y equipos para mantenimiento de piscinas"
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "Filtros de Agua",
+                "description": "Sistemas de filtración y purificación de agua"
+            },
+            {
+                "@type": "OfferCatalog",
+                "name": "Energías Renovables",
+                "description": "Paneles solares y sistemas fotovoltaicos"
+            }
+            ]
+        },
+        "service": {
+            "@type": "Service",
+            "serviceType": "Instalación de Sistemas de Riego",
+            "areaServed": {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": -34.346943768995686,
+                    "longitude": -55.76359424741334
+                },
+                "geoRadius": "50000"
+            }
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -34.346943768995686,
+            "longitude": -55.76359424741334
+        },
+        "openingHoursSpecification": [
+            {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+            },
+            {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "08:30",
+            "closes": "12:00"
+            }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "150",
+            "bestRating": "5",
+            "worstRating": "1"
+        }
     }
-}
-
-/* Contact Section */
-.contact-section {
-    background-color: white;
-}
-
-.contact-form-wrapper {
-    background: var(--light-blue);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.form-control {
-    border-radius: 8px;
-    padding: 0.75rem;
-    border: 1px solid #dee2e6;
-}
-
-.form-control:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
-}
-
-.contact-info {
-    margin-bottom: 2rem;
-}
-
-.info-card {
-    display: flex;
-    align-items: flex-start;
-    background: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.info-card {
-    display: flex;
-    align-items: flex-start;
-    background: var(--light-blue);
-    padding: 1.5rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-}
-
-.info-card i {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin-right: 1.5rem;  /* Increase margin */
-    margin-top: 0.25rem;
-}
-
-.info-card h4 {
-    margin: 0 0 0.5rem 0;  /* Add bottom margin */
-    font-size: 1.1rem;
-    color: var(--primary-color);
-}
-
-.info-card p {
-    margin: 0.5rem 0 0;
-    color: var(--text-color);
-}
-
-.map-container {
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.whatsapp-card {
-    background-color: #25D366;
-    color: white;
-}
-
-.whatsapp-card i {
-    color: white;
-}
-
-.whatsapp-link {
-    color: white;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.whatsapp-link:hover {
-    color: #e6e6e6;
-}
-
-.error-message {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-}
-
-.form-response {
-    transition: opacity 0.3s ease;
-}
-
-.form-response.fade {
-    opacity: 0;
-}
-
-.spinner-border {
-    margin-right: 0.5rem;
-}
-
-@media (max-width: 991px) {
-    .contact-info {
-        margin-top: 2rem;
-    }
-}
-
-
-/* Section styles */
-section {
-    padding: 60px 20px;
-}
-
-section:nth-child(even) {
-    background-color: #EAF4FF; /* Light blue for alternate sections */
-}
-
-/* Footer */
-.footer-section {
-    background-color: var(--dark-blue);
-    color: white;
-    padding: 4rem 0 2rem;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    transition: var(--transition);
-    display: block;
-    padding: 0.5rem 0;
-}
-
-.footer-links a:hover {
-    color: var(--secondary-color);
-    padding-left: 0.5rem;
-}
-
-.footer-hours {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-hours li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-divider {
-    border-color: rgba(255,255,255,0.1);
-    margin: 2rem 0;
-}
-
-.footer-bottom {
-    text-align: center;
-}
-
-.social-media {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: left;
-}
-
-.social-link {
-    color: white;
-    text-decoration: none;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-link i {
-    width: 40px;
-    height: 40px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-link:hover {
-    color: var(--secondary-color);
-    transform: translateY(-3px);
-}
-
-.review-card {
-    background: #f8f9fa;  /* Light gray background */
-    padding: 1.5rem;
-    border-radius: 8px;
-    text-align: center;
-    margin-top: 1rem;
-    color: #212529;  /* Dark gray text for high contrast */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* Subtle shadow to make card stand out */
-}
-
-.review-card .btn {
-    margin-top: 1rem;
-    width: 100%;
-}
-
-.cookie-consent {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(5px);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    display: none;
-    will-change: transform, opacity;
-}
-
-/* Add to critical CSS inline in head */
-.cookie-content {
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-}
-
-.cookie-content p {
-    margin: 0;
-}
-
-.cookie-content a {
-    color: var(--primary-color);
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .navbar-brand img {
-        height: 40px;
-    }
-
-    .hero-title {
-        font-size: 2.5rem; /* Smaller title on mobile */
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-
-    /* Ensure content is centered */
-    .hero-section .container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        position: relative;
-        z-index: 1;
-    }
-
-    /* iOS specific fixes */
-@supports (-webkit-touch-callout: none) {
-    .hero-section {
-        background-attachment: scroll;
-    }
-}
-
-@media (max-width: 768px) {
-    .g-recaptcha {
-        transform: scale(0.77);
-        transform-origin: left center;
-        margin-bottom: 10px;
-    }
-
-    .contact-form-wrapper {
-        padding: 1.5rem; /* Slightly reduce padding on mobile */
-    }
-
-    /* Ensure the form container can handle the scaled reCAPTCHA */
-    #contact-form {
-        min-width: 270px; /* Minimum width to prevent overflow */
-    }
-}
-
-.container {
-    padding-left: 15px;
-    padding-right: 15px;
-    width: 100%;
-    padding-right: var(--bs-gutter-x, 0.75rem);
-    padding-left: var(--bs-gutter-x, 0.75rem);
-    margin-right: auto;
-    margin-left: auto;
-    overflow: visible;  /* Allow natural flow */
-}
-
-/* Add to existing CSS */
-
-.modal .btn-container {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
-@media (max-width: 576px) {
-    .modal .btn-container {
-        flex-direction: column;
-    }
-    .modal .btn-container .btn {
-        width: 100%;
-        margin-bottom: 0.5rem;
-    }
-}
-
-/* Partners Section Base Styles */
-.partners-section {
-    background-color: var(--light-bg);
-    padding: 4rem 0;
-}
-
-.partner {
-    margin: 1.5rem 0;
-    padding: 1rem;
-    transition: all 0.3s ease;
-}
-
-.partner img {
-    max-width: 150px;
-    height: auto;
-    transition: all 0.3s ease;
-    -webkit-transition: all 0.3s ease;
-}
-
-.partner:hover img {
-    transform: scale(1.05);
-    -webkit-transform: scale(1.05);
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .partners-section .col-lg-3 {
-        width: 33.333%;
-        padding: 0.5rem;
-    }
+    </script>
     
-    .partner {
-        margin-bottom: 1rem;
-        padding: 0.5rem;
-    }
+    <meta name=twitter:card content=summary_large_image>
+    <meta name=twitter:title content="La Aldea - Insumos agrícolas y más en Tala">
+    <meta name=twitter:description content="Todo lo que necesitas para tu campo, hogar y piscina en un solo lugar.">
+    <meta name=twitter:image content=https://www.laaldeatala.com.uy/assets/images/og-image.webp>
     
-    .partner img {
-        max-width: 80px;
-    }
-}
-}
+    <link rel=icon type=image/x-icon href=assets/images/favicon/favicon.ico>
+    <link rel=icon type=image/svg+xml href=assets/images/favicon/favicon.svg>
+    <link rel=icon type=image/png sizes=96x96 href=assets/images/favicon/favicon-96x96.png>
+    <link rel=manifest href=assets/images/favicon/site.webmanifest>
 
-.privacy-policy-page {
-    min-height: 80vh;
-    padding-top: 100px;
-}
+</head>
+<body>
+    <div class=preloader>
+        <div class="spinner-border text-primary" role=status>
+            <span class=visually-hidden></span>
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img
+                    src="assets/images/logo.webp"
+                    alt="La Aldea Logo"
+                    width="163"
+                    height="40"
+                    fetchpriority="highest"
+                    decoding="sync"
+                    importance="high"
+                    class="navbar-logo"
+                >
+            </a>
+            <button class="navbar-toggler" type="button" 
+                    data-bs-toggle="collapse" 
+                    data-bs-target="#navbarNav" 
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#services">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#products">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="faq.html">Preguntas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-.privacy-policy-page h1 {
-    margin-bottom: 2rem;
-    color: var(--primary-color);
-}
+    <main>
+        <section id=hero class=hero-section>
+            <div class=hero-overlay></div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12 text-center text-white" data-aos=fade-up>
+                        <h1 class=hero-title>Bienvenidos a La Aldea</h1>
+                        <p class="owner-subtitle mb-4" data-aos=fade-up data-aos-delay=200>
+                            Martín Betancor Peregalli
+                        </p>
+                        <p class="lead mb-2">Instalaciones Hidráulicas, bombas de agua, sistemas de riego, drogueria, herramientas y más</p>
+                        <a href=#about class="btn btn-outline-light btn-lg px-5 py-3 mt-4">
+                            Conocenos <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-.privacy-policy-page h2 {
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-}
+        <section id=about class="about-section py-5">
+            <div class=container>
+                <div class="row align-items-center">
+                    <div class=col-lg-6 data-aos=fade-right>
+                        <div class=about-content>
+                            <h2 class="section-title mb-4">Sobre Nosotros</h2>
+                            <div class="section-divider mb-4"></div>
+                            <p class="lead mb-4">En La Aldea, trabajamos para ofrecer soluciones confiables y de alta calidad a nuestra comunidad agrícola.</p>
+                            <p class=mb-4>Nuestro objetivo es ser tu socio de confianza en instalaciones hidráulicas, insumos agrícolas, herramientas, y más. Con años de experiencia en el sector, entendemos las necesidades específicas de nuestros clientes.</p>
+                            <div class=about-features>
+                                <div class=feature>
+                                    <i class="fas fa-check-circle text-primary"></i>
+                                    <span>Productos de alta calidad</span>
+                                </div>
+                                <div class=feature>
+                                    <i class="fas fa-check-circle text-primary"></i>
+                                    <span>Asesoramiento especializado</span>
+                                </div>
+                                <div class=feature>
+                                    <i class="fas fa-check-circle text-primary"></i>
+                                    <span>Servicio personalizado</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=col-lg-6 data-aos=fade-left>
+                        <div class=about-image>
+                            <img src=assets/images/laaldeaedificio.webp alt="La Aldea Business" class="img-fluid rounded shadow" loading=lazy decoding=async>
+                            <div class=experience-badge>
+                                <span class=years>25+</span>
+                                <span class=text>Años de Experiencia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-.privacy-policy-page ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-}
+        <section id=partners class="partners-section py-5">
+            <div class=container>
+            <div class="row mb-5">
+                <div class="col-12 text-center" data-aos=fade-up>
+                <h2 class=section-title>Marcas que Representamos</h2>
+                <div class=section-divider></div>
+                </div>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/gianni.webp srcset=assets/images/partners/gianni.webp alt=Gianni class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>Gianni</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/diu.webp srcset=assets/images/partners/diu.webp alt=DIU class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>droguería Industrial Uruguaya</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/tigre1.webp srcset=assets/images/partners/tigre1.webp alt=Tigre class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>Tigre</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/nicoll.webp srcset=assets/images/partners/nicoll.webp alt=nicoll class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>nicoll</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/hidroservice.webp srcset=assets/images/partners/hidroservice.webp alt=hidroservice class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>hidroservice</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/pacifil.webp srcset=assets/images/partners/pacifil.webp alt=pacifil class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>pacifil</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/cablinur.webp srcset=assets/images/partners/cablinur.webp alt=cablinur class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>cablinur</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/lesa.webp srcset=assets/images/partners/lesa.webp alt=lesa class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>lesa</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/ramasil.webp srcset=assets/images/partners/ramasil.webp alt=ramasil class="img-fluid mx-auto d-block" loading=lazy decoding=async> 
+                    <h5 class=d-none>ramasil</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/balaguer.webp srcset=assets/images/partners/balaguer.webp alt=balaguer class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>balaguer</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                <div class="partner text-center">
+                    <img src=assets/images/partners/armco.webp srcset=assets/images/partners/armco.webp alt=armco class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                    <h5 class=d-none>armco</h5>
+                </div>
+                </div>
+                <div class="col-lg-3 col-md-6" data-aos=fade-up>
+                    <div class="partner text-center">
+                        <img src=assets/images/partners/lusqtoff.webp srcset=assets/images/partners/lusqtoff.webp alt=armco class="img-fluid mx-auto d-block" loading=lazy decoding=async>
+                        <h5 class=d-none>lusqtoff</h5>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id=services class="services-section py-5">
+            <div class=container>
+                <div class="row mb-5">
+                    <div class="col-12 text-center">
+                        <h2 class=section-title data-aos=fade-up>Nuestros Servicios</h2>
+                        <div class=section-divider></div>
+                    </div>
+                </div>
+        
+                <div class=service-banner data-aos=fade-up>
+                    <div class=service-image style=background-image:url(assets/images/services/irrigation.webp) loading=lazy decoding=async></div>
+                        <div class=service-overlay>
+                            <div class=service-content>
+                                <h3>Instalaciones Hidráulicas</h3>
+                                <p>Sistemas de riego, bebederos y soluciones hidráulicas para todo el Uruguay</p>
+                                <button type=button class="btn btn-outline-light" data-bs-toggle=modal data-bs-target=#serviceModal1>
+                                    Más Info
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        </section>
+
+        <section id=products class="products-section py-5">
+            <div class=container>
+                <div class="row mb-5">
+                    <div class="col-12 text-center" data-aos=fade-up>
+                        <h2 class=section-title>Nuestros Productos</h2>
+                        <div class=section-divider></div>
+                    </div>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    
+                    <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=100>
+                        <div class=product-card>
+                            <div class=product-image>
+                                <img src=assets/images/products/agricultural.webp srcset="assets/images/products/agricultural.webp 600w" sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" alt="Bombas de riego y sistemas de irrigación agrícola" loading=lazy decoding=async>
+                                <div class=overlay>
+                                    <i class="fas fa-seedling"></i>
+                                </div>
+                            </div>
+                            <div class=product-content>
+                                <h3>Hidráulica</h3>
+                                <p>Bombas de riego, tuberías, conectores, automatización y más</p>
+                                <a href=# class="btn btn-outline-primary" data-bs-toggle=modal data-bs-target=#agriculturalModal>
+                                    Ver Más <i class="fas fa-plus ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=200>
+                        <div class=product-card>
+                            <div class=product-image>
+                                <img src=assets/images/products/drogueria.webp srcset="assets/images/products/drogueria.webp 600w" sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" alt="Productos de droguería industrial y químicos" loading=lazy decoding=async>
+                                <div class=overlay>
+                                    <i class="fas fa-flask"></i>
+                                </div>
+                            </div>
+                            <div class=product-content>
+                                <h3>Droguería</h3>
+                                <p>Productos químicos para el mantenimiento del hogar y agrícola</p>
+                                <a href=# class="btn btn-outline-primary" data-bs-toggle=modal data-bs-target=#drogueriaModal>
+                                    Ver Más <i class="fas fa-plus ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=200>
+                        <div class=product-card>
+                            <div class=product-image>
+                                <img src=assets/images/products/tools.webp srcset="assets/images/products/tools.webp 600w" sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" alt=Herramientas loading=lazy decoding=async>
+                                <div class=overlay>
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                            </div>
+                            <div class=product-content>
+                                <h3>Herramientas</h3>
+                                <p>Herramientas manuales y eléctricas de calidad</p>
+                                <a href=# class="btn btn-outline-primary" data-bs-toggle=modal data-bs-target=#toolsModal>
+                                    Ver Más <i class="fas fa-plus ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=300>
+                        <div class=product-card>
+                            <div class=product-image>
+                                <img src=assets/images/products/pool.webp srcset="assets/images/products/pool.webp 600w" sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" alt="Productos para Piscinas" loading=lazy decoding=async>
+                                <div class=overlay>
+                                    <i class="fas fa-swimming-pool"></i>
+                                </div>
+                            </div>
+                            <div class=product-content>
+                                <h3>Piscinas</h3>
+                                <p>Filtros, bombas, químicos y mas para piscinas</p>
+                                <a href=# class="btn btn-outline-primary" data-bs-toggle=modal data-bs-target=#poolModal>
+                                    Ver Más <i class="fas fa-plus ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+        
+                    
+                    <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=400>
+                        <div class=product-card>
+                            <div class=product-image>
+                                <img src=assets/images/products/filters.webp srcset="assets/images/products/filters.webp 600w" sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" alt="Filtros y purificadores de agua para el hogar" loading=lazy decoding=async>
+                                <div class=overlay>
+                                    <i class="fas fa-filter"></i>
+                                </div>
+                            </div>
+                            <div class=product-content>
+                                <h3>Filtros de Agua</h3>
+                                <p>Sistemas de filtración para el hogar</p>
+                                <a href=# class="btn btn-outline-primary" data-bs-toggle=modal data-bs-target=#filterModal>
+                                    Ver Más <i class="fas fa-plus ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=500>
+                        <div class=product-card>
+                            <div class=product-image>
+                                <img src=assets/images/products/renewable.webp srcset="assets/images/products/renewable.webp 600w" sizes="(max-width: 768px) 100vw,
+                                           (max-width: 1200px) 50vw,
+                                           33vw" alt="Energías Renovables" loading=lazy decoding=async>
+                                <div class=overlay>
+                                    <i class="fas fa-solar-panel"></i>
+                                </div>
+                            </div>
+                            <div class=product-content>
+                                <h3>Energías Renovables</h3>
+                                <p>energias renovables para sistemas hidráulicos</p>
+                                <a href=# class="btn btn-outline-primary" data-bs-toggle=modal data-bs-target=#renewableModal>
+                                    Ver Más <i class="fas fa-plus ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id=testimonials class="testimonials-section py-5">
+            <div class=container>
+            <div class="row mb-5">
+            <div class="col-12 text-center" data-aos=fade-up>
+            <h2 class=section-title>Lo Que Dicen Nuestros Clientes</h2>
+            <div class=section-divider></div>
+            </div>
+            </div>
+            <div class=row>
+            <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=100>
+            <div class=testimonial-card>
+                <div class=testimonial-content>
+                <i class="fas fa-quote-left"></i>
+                <p>Excelente servicio técnico y calidad en productos para riego. El asesoramiento fue fundamental para mi proyecto.</p>
+                </div>
+                <div class=testimonial-author>
+                <div>
+                    <h3 class=h4>Sebastián Velázquez</h3>
+                    <p>Productor Rural</p>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=200>
+            <div class="testimonial-card premium-testimonial">
+                <div class=testimonial-content>
+                <i class="fas fa-quote-left"></i>
+                <p>Instalaron un sistema completo de riego con bomba solar en mi campo. El ahorro en energía es notable y el sistema funciona perfectamente. La instalación fue profesional y el seguimiento post-venta excelente.</p>
+                </div>
+                <div class=testimonial-author>
+                <div>
+                    <h3 class=h4>Juan Pablo Fernández</h3>
+                    <p>Establecimiento Ganadero</p>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-3 col-md-6" data-aos=fade-up data-aos-delay=300>
+                <div class=testimonial-card>
+                    <div class=testimonial-content>
+                    <i class="fas fa-quote-left"></i>
+                    <p>Gran variedad de productos para el mantenimiento de piscinas. Buenos precios y excelente asesoramiento técnico.</p>
+                    </div>
+                    <div class=testimonial-author>
+                    <div>
+                        <h3 class=h4>Luis Rodríguez</h3>
+                        <p>Cliente Particular</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class=col-md-3 data-aos=fade-up data-aos-delay=400>
+                <div class=testimonial-card>
+                    <div class=testimonial-content>
+                    <i class="fas fa-quote-left"></i>
+                    <p>Siempre encuentro las herramientas que necesito y a buen precio. La atención es muy buena y el personal conoce bien los productos.</p>
+                    </div>
+                    <div class=testimonial-author>
+                    <div>
+                        <h3 class=h4>María González</h3>
+                        <p>Pequeña Productora</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id=contact class="contact-section py-5">
+            <div class=container>
+                <div class="row mb-5">
+                    <div class="col-12 text-center" data-aos=fade-up>
+                        <h2 class=section-title>Contáctanos</h2>
+                        <div class=section-divider></div>
+                    </div>
+                </div>
+                <div class=row>
+                    
+                    <div class=col-lg-6 data-aos=fade-right>
+                        <div class=contact-form-wrapper>
+                            <form id="contact-form" action="https://formspree.io/f/mbldypgk" method="POST" novalidate>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Nombre</label>
+                                    <input class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                
+                                <input name="_gotcha" style="display:none">
+                                <input type="hidden" name="_subject" value="Nuevo mensaje de La Aldea">
+                                <div class="g-recaptcha mb-3" 
+                                    data-sitekey="6Ldp8MoqAAAAAPE58l1o8tghOXFVKA1JkH-KqerW"
+                                    data-callback="onRecaptchaSuccess">
+                                </div>
+                                <div class="form-response"></div>
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                    <span class="button-text">Enviar Mensaje</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+        
+                    
+                    <div class=col-lg-6 data-aos=fade-left>
+                        <div class="contact-info mb-4">
+                            <div class=info-card>
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h3 class=h4> Teléfono</h3>
+                                    <p>4315 4393</p>
+                                </div>
+                            </div>
+                            <div class="info-card whatsapp-card">
+                                <i class="fab fa-whatsapp"></i>
+                                <div>
+                                    <h3 class=h4>WhatsApp</h3>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                        98 92 744 725
+                                    </a>
+                                </div>
+                            </div>
+                            <div class=info-card>
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h3 class=h4> Horario</h3>
+                                    <p>Lunes - Viernes: 8:00 - 12:00 y 14:00 - 18:00 </p>
+                                    <p>Sábado: 8:30 - 12:00</p>
+                                </div>
+                            </div>
+                            <div class=info-card>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h3 class=h4>Ubicación</h3>
+                                    <p>Tala, Canelones, Uruguay</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=map-container id=mapContainer>
+                            <img src="assets/images/map-static.webp" alt="La Aldea Location Map" loading=lazy width=600 height=400 class=static-map fetchpriority=low referrerpolicy="no-referrer-when-downgrade">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class=footer-section>
+        <div class=container>
+            <div class=row>
+                <div class="col-lg-4 mb-4">
+                    <img src=assets/images/logo.webp srcset="assets/images/logo.webp 300w" alt="La Aldea Logo" height=40 width=163 class=mb-3 loading=lazy decoding=async>
+                    <p>Tu socio de confianza en soluciones agrícolas y más</p>
+                    <div class=social-media>
+                        <a href="https://www.facebook.com/profile.php?id=61561171162882&locale=es_LA" target=_blank class=social-link aria-label="Visitar página de Facebook de La Aldea">
+                            <i class="fab fa-facebook-f" aria-hidden=true></i>
+                            <span class=visually-hidden>Facebook</span>
+                        </a>
+                        <a href=https://www.instagram.com/laaldeatala/ target=_blank class=social-link aria-label="Visitar perfil de Instagram de La Aldea">
+                            <i class="fab fa-instagram" aria-hidden=true></i>
+                            <span class=visually-hidden>Instagram</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h3 class=footer-title>Enlaces</h3>
+                    <ul class=footer-links>
+                        <li><a href=#about>Nosotros</a></li>
+                        <li><a href=#services>Servicios</a></li>
+                        <li><a href=#products>Productos</a></li>
+                        <li><a href=#contact>Contacto</a></li>
+                        <li><a href=privacy-policy.html>Política de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class=col-lg-4>
+                    <h3 class=footer-title>Horario de Atención</h3>
+                    <ul class=footer-hours>
+                        <li>Lunes a Viernes: 8:00 - 12:00 y 14:00 - 18:00</li>
+                        <li>Sábado: 8:30 - 12:00</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class=review-card>
+                        <h3 class=review-title>¿Satisfecho con nuestro servicio?</h3>
+                        <p>Déjanos tu opinión en Google</p>
+                        <a href=https://g.page/r/CWOPBH-X6sYFEBM/review class="btn btn-primary" target=_blank>
+                            <i class="fas fa-star me-2"></i>Calificar en Google
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class=footer-divider>
+            <div class=footer-bottom>
+                <p>&copy; 2025 La Aldea. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class=cookie-consent id=cookieConsent>
+        <div class=container>
+            <div class=cookie-content>
+                <p>Utilizamos cookies para mejorar su experiencia. Al continuar navegando, acepta nuestra <a href=/privacy-policy>política de privacidad</a>.</p>
+                <button class="btn btn-primary" id=acceptCookiesBtn>Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <button id=scrollToTop class=scroll-to-top>
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    
+    <div class="modal fade" id=serviceModal1 tabindex=-1>
+        <div class=modal-dialog>
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Instalaciones Hidráulicas</h2>
+                    <button type=button class=btn-close data-bs-dismiss=modal></button>
+                </div>
+                <div class=modal-body>
+                    <ul class=mb-4>
+                        <li>Diseño de sistemas de riego</li>
+                        <li>Instalación profesional</li>
+                        <li>Mantenimiento preventivo</li>
+                        <li>Reparaciones</li>
+                    </ul>
+                    <div class=text-center>
+                        <a href=# class="btn btn-primary" onclick='closeModalAndScroll("serviceModal1")'>
+                            Contactar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id=agriculturalModal tabindex=-1>
+        <div class="modal-dialog modal-lg">
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Insumos Agrícolas</h2>
+                </div>
+                <div class=modal-body>
+                    <div class=row>
+                        <div class=col-md-6>
+                            <img src=assets/images/products/agricultural.webp srcset="assets/images/products/agricultural.webp 800w" sizes="(max-width: 768px) 100vw,
+                                       50vw" alt="Agricultural Products" class="img-fluid rounded" loading=lazy decoding=async>
+                        </div>
+                        <div class=col-md-6>
+                            <h3 class="fw-bold h6">Productos Destacados:</h3>
+                            <ul class=list-unstyled>
+                                <li><i class="fas fa-check text-primary me-2"></i>Bombas de riego</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Sistemas de automatización</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Tuberías y conectores</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>tanques de agua y mas</li>
+                            </ul>
+                            <div class=mt-4>
+                                <div class=btn-container>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                        <i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp
+                                    </a>
+                                    <button class="btn btn-primary" onclick='closeModalAndScroll("agriculturalModal")'>
+                                        <i class="fas fa-envelope me-2"></i>Contactar por Email
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id=drogueriaModal tabindex=-1>
+        <div class="modal-dialog modal-lg">
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Droguería Industrial</h2>
+                    <button type=button class=btn-close data-bs-dismiss=modal></button>
+                </div>
+                <div class=modal-body>
+                    <div class=row>
+                        <div class=col-md-6>
+                            <img src=assets/images/products/drogueria.webp srcset="assets/images/products/drogueria.webp 800w" sizes="(max-width: 768px) 100vw,
+                                       50vw" loading=lazy decoding=async class="img-fluid rounded" alt="Droguería Industrial">
+                        </div>
+                        <div class=col-md-6>
+                            <h3 class="fw-bold h6">Productos Destacados:</h3>
+                            <ul class=list-unstyled>
+                                <li><i class="fas fa-check text-primary me-2"></i>Productos para limpieza</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Desinfectantes y detergentes</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Productos para mantenimiento</li>
+                            </ul>
+                            <div class=mt-4>
+                                <div class=btn-container>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                        <i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp
+                                    </a>
+                                    <button class="btn btn-primary" onclick='closeModalAndScroll("drogueriaModal")'>
+                                        <i class="fas fa-envelope me-2"></i>Contactar por Email
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id=toolsModal tabindex=-1>
+        <div class="modal-dialog modal-lg">
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Herramientas</h2>
+                    <button type=button class=btn-close data-bs-dismiss=modal></button>
+                </div>
+                <div class=modal-body>
+                    <div class=row>
+                        <div class=col-md-6>
+                            <img src=assets/images/products/tools.webp srcset="assets/images/products/tools.webp 800w" sizes="(max-width: 768px) 100vw,
+                                       50vw" loading=lazy decoding=async alt=Herramientas class="img-fluid rounded">
+                        </div>
+                        <div class=col-md-6>
+                            <h3 class="fw-bold h6">Productos Destacados:</h3>
+                            <ul class=list-unstyled>
+                                <li><i class="fas fa-check text-primary me-2"></i>Herramientas de corte</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Herramientas de mecánica</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Herramientas de seguridad</li>
+                            </ul>
+                            <div class=mt-4>
+                                <div class=btn-container>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                        <i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp
+                                    </a>
+                                    <button class="btn btn-primary" onclick='closeModalAndScroll("toolsModal")'>
+                                        <i class="fas fa-envelope me-2"></i>Contactar por Email
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="modal fade" id=poolModal tabindex=-1>
+        <div class=modal-dialog>
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Piscinas</h2>
+                    <button type=button class=btn-close data-bs-dismiss=modal></button>
+                </div>
+                <div class=modal-body>
+                    <div class=row>
+                        <div class=col-md-6>
+                            <img src=assets/images/products/pool.webp srcset="assets/images/products/pool.webp 800w" sizes="(max-width: 768px) 100vw,
+                                       50vw" loading=lazy decoding=async class="img-fluid rounded" alt=Piscinas>
+                        </div>
+                        <div class=col-md-6>
+                            <h3 class="fw-bold h6">Productos Destacados:</h3>
+                            <ul class=list-unstyled>
+                                <li><i class="fas fa-check text-primary me-2"></i>filtros para piscinas</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>bombas y bombas de calor</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>cloro, calarificante y alguicida</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>herramientas de piscina</li>
+                            </ul>
+                            <div class=mt-4>
+                                <div class=btn-container>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                        <i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp
+                                    </a>
+                                    <button class="btn btn-primary" onclick='closeModalAndScroll("poolModal")'>
+                                        <i class="fas fa-envelope me-2"></i>Contactar por Email
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <div class="modal fade" id=filterModal tabindex=-1>
+        <div class=modal-dialog>
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Filtros</h2>
+                    <button type=button class=btn-close data-bs-dismiss=modal></button>
+                </div>
+                <div class=modal-body>
+                    <div class=row>
+                        <div class=col-md-6>
+                            <img src=assets/images/products/filters.webp srcset="assets/images/products/filters.webp 800w" sizes="(max-width: 768px) 100vw,
+                                       50vw" loading=lazy decoding=async class="img-fluid rounded" alt="Filtros de Agua">
+                        </div>
+                            <div class=col-md-6>
+                                <h3 class="fw-bold h6">Productos Destacados:
+                                <ul class=list-unstyled>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Filtros de agua para el hogar</li>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Purificadores de agua</li>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Cartuchos y repuestos</li>
+                                </ul>
+                                <div class=mt-4>
+                                    <div class=btn-container>
+                                        <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                            <i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp
+                                        </a>
+                                        <button class="btn btn-primary" onclick='closeModalAndScroll("filterModal")'>
+                                            <i class="fas fa-envelope me-2"></i>Contactar por Email
+                                        </button>
+                                    </div>
+                                </div>
+                            </h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    
+     <div class="modal fade" id=renewableModal tabindex=-1>
+        <div class=modal-dialog>
+            <div class=modal-content>
+                <div class=modal-header>
+                    <h2 class="modal-title h5">Renovable</h2>
+                    <button type=button class=btn-close data-bs-dismiss=modal></button>
+                </div>
+                <div class=modal-body>
+                    <div class=row>
+                        <div class=col-md-6>
+                            <img src=assets/images/products/renewable.webp srcset="assets/images/products/renewable.webp 800w" sizes="(max-width: 768px) 100vw,
+                                       50vw" loading=lazy decoding=async class="img-fluid rounded" alt="Energia Renovable">
+                        </div>
+                        <div class=col-md-6>
+                            <h3 class="fw-bold h6">Productos Destacados:</h3>
+                            <ul class=list-unstyled>
+                                <li><i class="fas fa-check text-primary me-2"></i>Paneles solares</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>Inversores</li>
+                                <li><i class="fas fa-check text-primary me-2"></i>sistemas fotovoltaicos y más</li>
+                            </ul>
+                            <div class=mt-4>
+                                <div class=btn-container>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
+                                        <i class="fab fa-whatsapp me-2"></i>Consultar por WhatsApp
+                                    </a>
+                                    <button class="btn btn-primary" onclick='closeModalAndScroll("renewableModal")'>
+                                        <i class="fas fa-envelope me-2"></i>Contactar por Email
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Core functionality first -->
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Bootstrap (needed for UI components) -->
+    <script type="module">
+        import { Popover, Modal, Collapse } from 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/+esm';
+        window.bootstrap = { Modal, Collapse, Popover };
+    </script>
+    
+    <!-- Non-critical enhancements -->
+    <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script defer src="assets/js/form-validation.js"></script>
+    
+    <!-- Analytics and external services last -->
+    <script async src="assets/js/analytics.js"></script>
+</body>
+</html>
+
+
