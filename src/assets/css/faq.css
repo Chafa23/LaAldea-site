@@ -531,6 +531,53 @@ section, .section, .safety-pictograms, .benefits-section {
     font-weight: 600;
 }
 
+/* Add to faq.css */
+/* Responsive Tables */
+@media (max-width: 768px) {
+    /* Approach 1: Make tables horizontally scrollable */
+    .table-responsive,
+    .comparison-table {
+      display: block;
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 1.5rem;
+      border: 0;
+    }
+    
+    /* Adjust internal spacing for better mobile display */
+    .comparison-table table,
+    .table-responsive table {
+      margin-bottom: 0;
+    }
+    
+    .comparison-table th,
+    .comparison-table td,
+    .table-responsive th,
+    .table-responsive td {
+      white-space: nowrap;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    /* Add visual indicator for scrollable tables */
+    .comparison-table::after,
+    .table-responsive::after {
+      content: '← Deslizar →';
+      display: block;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #6c757d;
+      padding: 0.5rem 0;
+    }
+    
+    /* Remove borders that cause extra width */
+    .comparison-table .table-bordered,
+    .table-responsive .table-bordered {
+      border: 0;
+    }
+  }
+
 /* Pictogram Grid */
 .pictogram-grid {
     display: grid;
