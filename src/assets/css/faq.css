@@ -5,7 +5,7 @@
     --dark-blue: #004085;
     --light-blue: #EAF4FF;
     --light-green: #E6F5E8;
-    --text-color: #343A40;
+    --text-color: #16181a;
     --text-muted: #6c757d;
     --border-color: #dee2e6;
     --bg-light: #f8f9fa;
@@ -99,6 +99,7 @@ body {
 .navbar {
     background-color: var(--primary-color);
     position: fixed;
+    height: 76px;
     top: 0;
     left: 0;
     right: 0;
@@ -106,6 +107,7 @@ body {
     padding: 1rem 0;
     transform: translateY(0);
     transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .navbar-brand {
@@ -446,7 +448,13 @@ section, .section, .safety-pictograms, .benefits-section {
     border-color: rgba(0,123,255,0.25);
 }
 
+.accordion-collapse {
+    contain: content;
+    min-height: 50px; /* Minimum space for content */
+  }
+
 .accordion-body {
+    overflow: visible;
     padding: 1.25rem;
     background: white;
 }
