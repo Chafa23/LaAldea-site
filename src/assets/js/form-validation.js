@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const formConfig = {
-        formspreeEndpoint: 'https://formspree.io/f/mbldypgk', 
-        recaptchaSiteKey: '6Ldp8MoqAAAAAPE58l1o8tghOXFVKA1JkH-KqerW'  
+        formspreeEndpoint: 'https://formspree.io/f/mbldypgk',
+        recaptchaSiteKey: '6Ldp8MoqAAAAAPE58l1o8tghOXFVKA1JkH-KqerW'
     };
 
     const form = document.getElementById("contact-form");
@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const buttonText = submitButton.querySelector('.button-text');
     const formResponse = form.querySelector('.form-response');
 
+    // Helper Functions
     const showError = (input, message) => {
         const formControl = input.parentElement;
         const errorDiv = formControl.querySelector('.error-message') || 
@@ -44,72 +45,114 @@ document.addEventListener("DOMContentLoaded", function() {
     const showResponse = (message, isError = false) => {
         formResponse.textContent = message;
         formResponse.className = `form-response alert ${isError ? 'alert-danger' : 'alert-success'} mt-3`;
+        formResponse.style.opacity = '1';
+        
         setTimeout(() => {
-            formResponse.classList.add('fade');
-            setTimeout(() => formResponse.remove(), 500);
+            formResponse.style.opacity = '0';
+            setTimeout(() => {
+                if (formResponse.parentNode) {
+                    formResponse.remove();
+                }
+            }, 300);
         }, 3000);
     };
 
+    // Form validation
+    const validateForm = () => {
+        let isValid = true;
+        const fields = {
+            name: {
+                element: form.querySelector('[name="name"]'),
+                message: "Por favor ingrese su nombre"
+            },
+            email: {
+                element: form.querySelector('[name="email"]'),
+                message: "Por favor ingrese un email válido",
+                validator: validateEmail
+            },
+            message: {
+                element: form.querySelector('[name="message"]'),
+                message: "Por favor ingrese un mensaje"
+            }
+        };
+
+        // Clear previous errors
+        Object.values(fields).forEach(field => removeError(field.element));
+
+        // Validate each field
+        Object.entries(fields).forEach(([key, field]) => {
+            const value = field.element.value.trim();
+            if (!value || (field.validator && !field.validator(value))) {
+                showError(field.element, field.message);
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    };
+
+    // Form submission handler
     form.addEventListener("submit", async function(e) {
         e.preventDefault();
-        let isValid = true;
-
-        // Clear previous errors and response
-        form.querySelectorAll('input, textarea').forEach(input => removeError(input));
-        formResponse.textContent = '';
-
-        // Validate name
-        const name = form.querySelector('[name="name"]');
-        if (name.value.trim() === "") {
-            showError(name, "Por favor ingrese su nombre");
-            isValid = false;
-        }
-
-        // Validate email
-        const email = form.querySelector('[name="email"]');
-        if (!validateEmail(email.value.trim())) {
-            showError(email, "Por favor ingrese un email válido");
-            isValid = false;
-        }
-
-        // Validate message
-        const message = form.querySelector('[name="message"]');
-        if (message.value.trim() === "") {
-            showError(message, "Por favor ingrese un mensaje");
-            isValid = false;
-        }
+        
+        if (!validateForm()) return;
 
         // Verify reCAPTCHA
-        const recaptchaResponse = grecaptcha.getResponse();
-        if (!recaptchaResponse) {
-            showResponse('Por favor complete el captcha', true);
-            return;
-        }
+        try {
+            const recaptchaResponse = grecaptcha.getResponse();
+            if (!recaptchaResponse) {
+                showResponse('Por favor complete el captcha', true);
+                return;
+            }
 
-        if (isValid) {
             setLoading(true);
             const formData = new FormData(form);
             formData.append('g-recaptcha-response', recaptchaResponse);
-            try {
-                const response = await fetch(formConfig.formspreeEndpoint, {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    form.reset();
-                    showResponse('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.');
-                } else {
-                    throw new Error('Error al enviar el mensaje');
+
+            const response = await fetch(formConfig.formspreeEndpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
-            } catch (error) {
-                showResponse('Error al enviar el mensaje. Por favor intente nuevamente.', true);
-            } finally {
-                setLoading(false);
+            });
+            
+            if (response.ok) {
+                form.reset();
+                grecaptcha.reset();
+                showResponse('¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.');
+            } else {
+                throw new Error('Error en el servidor');
             }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            showResponse('Error al enviar el mensaje. Por favor intente nuevamente.', true);
+        } finally {
+            setLoading(false);
         }
     });
+
+    // Add lazy loading for reCAPTCHA
+    const loadRecaptcha = () => {
+        if (typeof grecaptcha === 'undefined') {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const script = document.createElement('script');
+                        script.src = 'https://www.google.com/recaptcha/api.js';
+                        script.async = true;
+                        script.defer = true;
+                        document.head.appendChild(script);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const form = document.getElementById('contact-form');
+            if (form) observer.observe(form);
+        }
+    };
+
+    // Initialize reCAPTCHA lazily
+    loadRecaptcha();
 });
