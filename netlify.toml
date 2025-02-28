@@ -36,7 +36,7 @@
 [[headers]]
   for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
+    Cache-Control = "public, no-cache, must-revalidate"
 
 [[headers]]
   for = "/*.css"
@@ -71,6 +71,16 @@
   [headers.values]
     Cache-Control = "public, max-age=3600"
     Content-Type = "text/plain"
+
+[[redirects]]
+  from = "/faq/*"
+  to = "/faq/:splat.html"
+  status = 301
+
+[[redirects]]
+  from = "/faq"
+  to = "/faq.html"
+  status = 301
 
 [[redirects]]
   from = "/*"
