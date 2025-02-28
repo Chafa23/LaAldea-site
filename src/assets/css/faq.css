@@ -580,6 +580,24 @@ section, .section, .safety-pictograms, .benefits-section {
 }
 
 /* ----------------- FOOTER ----------------- */
+/* Add to your CSS */
+.map-container {
+    aspect-ratio: 3/2;
+    height: auto;
+    background-color: #f8f9fa;
+    position: relative;
+    overflow: hidden;
+  }
+  
+.static-map {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .footer-section {
     background-color: var(--dark-blue);
     color: white;
