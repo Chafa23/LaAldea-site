@@ -22,7 +22,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Preguntas Frecuentes - La Aldea Tala">
@@ -70,12 +70,7 @@
             opacity: 1 !important;
             transform: none !important;
             transition: none !important;
-          }
-          
-          /* Only enable animations after page is fully loaded */
-          .aos-initialized [data-aos] {
-            opacity: 0 !important;
-          }
+        }
     </style>
 
     <!-- Non-critical CSS with async loading -->
@@ -635,16 +630,16 @@
 
         <section id="contact" class="contact-section py-5">
             <div class="container">
-                <div class="row mb-5">
-                    <div class="col-12 text-center" data-aos="fade-up">
-                        <h2 class="section-title">Contáctanos</h2>
-                        <div class="section-divider"></div>
+                <div class="row">
+                    <div class="col-12 text-center" data-aos=fade-up>
+                        <h2 class=section-title>Contáctanos</h2>
+                        <div class=section-divider></div>
                     </div>
                 </div>
-                <div class="row">
+                <div class=row>
                     
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="contact-form-wrapper">
+                    <div class=col-lg-6 data-aos=fade-right>
+                        <div class=contact-form-wrapper>
                             <form id="contact-form" action="https://formspree.io/f/mbldypgk" method="POST" novalidate>
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nombre</label>
@@ -675,42 +670,42 @@
                     </div>
         
                     
-                    <div class="col-lg-6" data-aos="fade-left">
+                    <div class=col-lg-6 data-aos=fade-left>
                         <div class="contact-info mb-4">
-                            <div class="info-card">
+                            <div class=info-card>
                                 <i class="fas fa-phone"></i>
                                 <div>
-                                    <h3 class="h4"> Teléfono</h3>
+                                    <h3 class=h4> Teléfono</h3>
                                     <p>4315 4393</p>
                                 </div>
                             </div>
                             <div class="info-card whatsapp-card">
                                 <i class="fab fa-whatsapp"></i>
                                 <div>
-                                    <h3 class="h4">WhatsApp</h3>
-                                    <a href="https://wa.me/59892744725" class="btn btn-success" target="_blank">
+                                    <h3 class=h4>WhatsApp</h3>
+                                    <a href=https://wa.me/59892744725 class="btn btn-success" target=_blank>
                                         98 92 744 725
                                     </a>
                                 </div>
                             </div>
-                            <div class="info-card">
+                            <div class=info-card>
                                 <i class="fas fa-clock"></i>
                                 <div>
-                                    <h3 class="h4"> Horario</h3>
+                                    <h3 class=h4> Horario</h3>
                                     <p>Lunes - Viernes: 8:00 - 12:00 y 14:00 - 18:00 </p>
                                     <p>Sábado: 8:30 - 12:00</p>
                                 </div>
                             </div>
-                            <div class="info-card">
+                            <div class=info-card>
                                 <i class="fas fa-map-marker-alt"></i>
                                 <div>
-                                    <h3 class="h4">Ubicación</h3>
+                                    <h3 class=h4>Ubicación</h3>
                                     <p>Tala, Canelones, Uruguay</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="map-container" id="mapContainer">
-                            <img src="assets/images/map-static.webp" alt="La Aldea Location Map" loading="lazy" width="600" height="400" class="static-map" fetchpriority="low" referrerpolicy="no-referrer-when-downgrade">
+                        <div class=map-container id=mapContainer>
+                            <img src="assets/images/map-static.webp" alt="La Aldea Location Map" loading=lazy width=564 height=589 class=static-map fetchpriority=low referrerpolicy="no-referrer-when-downgrade">
                         </div>
                     </div>
                 </div>
@@ -815,6 +810,21 @@
           setTimeout(() => {
             document.documentElement.classList.add('aos-initialized');
           }, 100);
+        });
+    </script>
+
+    <script>
+        // Pre-initialize Bootstrap components to prevent layout shifts
+        document.addEventListener('DOMContentLoaded', function() {
+          // Force layout calculation early
+          document.body.offsetHeight;
+          
+          // Initialize all accordions immediately to prevent shifts
+          const accordionElements = document.querySelectorAll('.accordion-collapse');
+          accordionElements.forEach(collapse => {
+            // Create empty Bootstrap collapse instance
+            new bootstrap.Collapse(collapse, {toggle: false});
+          });
         });
     </script>
 </body>
