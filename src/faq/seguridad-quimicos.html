@@ -41,7 +41,7 @@
     <meta name="geo.placename" content="Tala, Canelones, San Ramón, San Jacinto, Migues, San Bautista, Santa Rosa, Montes, Fray Marcos, Casupá, Punta del Este, Montevideo">
     <meta name="geo.position" content="-34.346943768995686, -55.76359424741334">
 
-    <!-- Consolidated TechArticle Schema -->
+    <!-- Consolidated TechArticle Schema with fixed references -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -78,12 +78,8 @@
             "name": "Seguridad Química",
             "sameAs": "https://www.laaldeatala.com.uy/faq/seguridad-quimicos.html#howto"
         },
-        "hasPart": {
-            "@type": "FAQPage",
-            "@id": "https://www.laaldeatala.com.uy/faq/seguridad-quimicos.html#faq"
-        },
         "isPartOf": {
-            "@type": "FAQPage",
+            "@type": "WebPage",
             "@id": "https://www.laaldeatala.com.uy/faq.html"
         }
     }
@@ -246,7 +242,7 @@
     }
     </script>
 
-    <!-- FAQPage Schema with ID -->
+    <!-- FAQPage Schema with fixed syntax -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -277,7 +273,11 @@
                     "text": "Mantener en área ventilada, separar productos incompatibles, usar contenedores apropiados y etiquetar claramente todos los productos."
                 }
             }
-        ]
+        ],
+        "isPartOf": {
+            "@type": "WebPage",
+            "@id": "https://www.laaldeatala.com.uy/faq.html"
+        }
     }
     </script>
 
@@ -286,7 +286,7 @@
     {
         "@context": "https://schema.org",
         "@type": "ItemList",
-        "name": "Equipo de Protección Personal Requerido",
+        "name": "Equipos de Protección Personal",
         "itemListElement": [
             {
                 "@type": "ListItem",
@@ -294,7 +294,16 @@
                 "item": {
                     "@type": "Product",
                     "name": "Guantes de Protección",
-                    "description": "Resistentes a productos químicos"
+                    "description": "Resistentes a productos químicos",
+                    "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStore",
+                        "priceCurrency": "UYU",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "La Aldea"
+                        }
+                    }
                 }
             },
             {
@@ -303,7 +312,16 @@
                 "item": {
                     "@type": "Product",
                     "name": "Gafas de Seguridad",
-                    "description": "Protección ocular completa"
+                    "description": "Protección ocular contra salpicaduras",
+                    "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStore",
+                        "priceCurrency": "UYU",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "La Aldea"
+                        }
+                    }
                 }
             },
             {
@@ -312,7 +330,16 @@
                 "item": {
                     "@type": "Product",
                     "name": "Máscara Respiratoria",
-                    "description": "Con filtros adecuados"
+                    "description": "Filtrado de vapores químicos",
+                    "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStore",
+                        "priceCurrency": "UYU",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "La Aldea"
+                        }
+                    }
                 }
             },
             {
@@ -321,7 +348,16 @@
                 "item": {
                     "@type": "Product",
                     "name": "Ropa Protectora",
-                    "description": "Resistente a químicos"
+                    "description": "Protección corporal completa",
+                    "offers": {
+                        "@type": "Offer",
+                        "availability": "https://schema.org/InStore",
+                        "priceCurrency": "UYU",
+                        "seller": {
+                            "@type": "Organization",
+                            "name": "La Aldea"
+                        }
+                    }
                 }
             }
         ]
